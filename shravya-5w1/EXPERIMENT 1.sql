@@ -1,0 +1,82 @@
+SELECT * FROM TAB;
+CREATE TABLE STUDENT(
+    NAME VARCHAR2(20),
+    Student_number NUMBER,
+    Class NUMBER,
+    Major varchar2(20)
+);
+DESC STUDENT;
+ INSERT INTO Student 
+ VALUES ('SMITH',17,1,'CS'),('BROWN',8,2,'CS');
+ SELECT * FROM STUDENT;
+
+ CREATE TABLE COURSE(
+    Course_name VARCHAR2(100),
+    Course_number VARCHAR2(50),
+    Credit_hours NUMBER,
+    Department VARCHAR2(10)
+ );
+ DESC COURSE;
+
+ INSERT INTO COURSE
+VALUES ('Intro to computer science', 1301, 4, 'CS');
+
+INSERT INTO COURSE
+VALUES ('Data structures', 1321, 4, 'CS');
+
+INSERT INTO COURSE
+VALUES ('Discrete mathematics', 2302, 3, 'MATH');
+
+INSERT INTO COURSE
+VALUES ('Database', 3380, 3, 'CS');
+SELECT * FROM COURSE;
+
+CREATE TABLE SECTION(
+Section_identifer NUMBER,
+Coure_number VARCHAR2(100),
+Semster VARCHAR2(50),
+Year NUMBER,
+Instructor VARCHAR2(20)
+);
+DESC SECTION;
+INSERT INTO SECTION
+VALUES (85, 'MATH2410', 'Fall', 2007, 'King');
+
+INSERT INTO SECTION
+VALUES (92, 'CS1310', 'Fall', 2008, 'Anderson');
+
+INSERT INTO SECTION
+VALUES (102, 'CS3320', 'Spring', 2008, 'Kauth');
+
+INSERT INTO SECTION
+VALUES (112, 'MATH2410', 'Fall', 2008, 'Chang');
+
+INSERT INTO SECTION
+VALUES (119, 'CS1310', 'Fall', 2008, 'Stone');
+
+INSERT INTO SECTION
+VALUES (135, 'CS3380', 'Fall', 2008, 'Stone');
+SELECT * FROM SECTION;
+
+CREATE TABLE GRADE_REPORT(
+    Student_number NUMBER,
+    Section_identifier NUMBER,
+    GRADE VARCHAR2(5)
+);
+DESC GRADE_REPORT;
+
+INSERT INTO Grade_Report
+VALUES (7, 112, 'B');
+
+INSERT INTO Grade_Report
+VALUES (7, 119, 'C');
+
+INSERT INTO Grade_Report
+VALUES (8, 85, 'A');
+
+INSERT INTO Grade_Report
+VALUES (8, 102, 'B');
+
+INSERT INTO Grade_Report
+VALUES (8, 135, 'A');
+SELECT * FROM GRADE_REPORT;
