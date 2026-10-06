@@ -1,0 +1,220 @@
+CREATE TABLE STUDENT7 (
+STUDENT_ID NUMBER(4) PRIMARY KEY,
+STUDENT_NAME VARCHAR2 (30),
+COURSE VARCHAR2 (20),
+MARKS NUMBER(3)
+);
+
+![output](<Screenshot (204).png>)
+7a
+
+SET SERVEROUTPUT ON;
+
+-- 1. Create STUDENT table
+CREATE TABLE STUDENT (
+    STUDENT_ID   NUMBER PRIMARY KEY,
+    STUDENT_NAME VARCHAR2(50),
+    MARKS        NUMBER
+);
+
+-- 2. Insert sample records
+INSERT INTO STUDENT VALUES (101, 'Rahul', 85);
+INSERT INTO STUDENT VALUES (102, 'Priya', 92);
+INSERT INTO STUDENT VALUES (103, 'Arun', 78);
+[
+COMMIT;
+![output](<Screenshot (205).png>)
+
+-- 3. Create the stored procedure
+CREATE OR REPLACE PROCEDURE GET_STUDENT_DETAILS (
+    P_STUDENT_ID   IN  STUDENT.STUDENT_ID%TYPE,
+    P_STUDENT_NAME OUT STUDENT.STUDENT_NAME%TYPE,
+    P_MARKS        OUT STUDENT.MARKS%TYPE
+)
+IS
+BEGIN
+    -- Retrieve student details
+    SELECT STUDENT_NAME, MARKS
+    INTO P_STUDENT_NAME, P_MARKS
+    FROM STUDENT
+    WHERE STUDENT_ID = P_STUDENT_ID;
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        P_STUDENT_NAME := 'Student Not Found';
+        P_MARKS := NULL;
+END;
+/
+ ![output](<Screenshot (209).png>)
+
+
+-- 4. Anonymous PL/SQL block to call the procedure
+DECLARE
+    V_STUDENT_ID   STUDENT.STUDENT_ID%TYPE := 101;
+    V_STUDENT_NAME STUDENT.STUDENT_NAME%TYPE;
+    V_MARKS        STUDENT.MARKS%TYPE;
+BEGIN
+    -- Call the procedure
+    GET_STUDENT_DETAILS(
+        V_STUDENT_ID,
+        V_STUDENT_NAME,
+        V_MARKS
+    );
+    DBMS_OUTPUT.PUT_LINE('Student ID   : ' || V_STUDENT_ID);
+    DBMS_OUTPUT.PUT_LINE('Student Name : ' || V_STUDENT_NAME);
+    DBMS_OUTPUT.PUT_LINE('Marks        : ' || V_MARKS);
+END;
+/
+
+7b
+
+program 1
+
+SET SERVEROUTPUT ON;
+
+-- 1. Create EMPLOYEE table
+CREATE TABLE EMPLOYEE7 (
+    EMPLOYEE_ID    NUMBER PRIMARY KEY,
+    EMPLOYEE_NAME  VARCHAR2(50),
+    MONTHLY_SALARY NUMBER(10,2)
+);
+
+-- 2. Insert sample employee records
+INSERT INTO EMPLOYEE7 VALUES (101, 'Rahul', 25000);
+INSERT INTO EMPLOYEE7 VALUES (102, 'Priya', 30000);
+INSERT INTO EMPLOYEE7 VALUES (103, 'Arun', 35000);
+INSERT INTO EMPLOYEE7 VALUES (104, 'Sneha', 40000);
+
+COMMIT;
+![output](<Screenshot (210).png>)
+
+
+-- 3. Create stored function
+CREATE OR REPLACE FUNCTION CALCULATE_ANNUAL_SALARY (
+    P_MONTHLY_SALARY IN NUMBER
+)
+RETURN NUMBER
+IS
+    V_ANNUAL_SALARY NUMBER;
+BEGIN
+    -- Calculate annual salary
+    V_ANNUAL_SALARY := P_MONTHLY_SALARY * 12;
+
+    -- Return annual salary
+    RETURN V_ANNUAL_SALARY;
+END;
+/
+-- 4. Invoke the function using SELECT statement
+SELECT
+    EMPLOYEE_ID,
+    EMPLOYEE_NAME,
+    MONTHLY_SALARY,
+    CALCULATE_ANNUAL_SALARY(MONTHLY_SALARY) AS ANNUAL_SALARY
+FROM EMPLOYEE7;
+
+![output](<Screenshot (211).png>)
+
+7b2
+
+SET SERVEROUTPUT ON;
+
+-- 1. Create STUDENT table
+CREATE TABLE STUDENT7b (
+    STUDENT_ID   NUMBER PRIMARY KEY,
+    STUDENT_NAME VARCHAR2(50),
+    COURSE       VARCHAR2(50),
+    MARKS        NUMBER
+);
+
+-- 2. Insert sample student records
+INSERT INTO STUDENT7b VALUES (101, 'Rahul', 'BCA', 85);
+INSERT INTO STUDENT7b VALUES (102, 'Priya', 'BCA', 90);
+INSERT INTO STUDENT7b VALUES (103, 'Arun', 'BBA', 78);
+![output](<Screenshot (212).png>)
+
+INSERT INTO STUDENT7b VALUES (104, 'Sneha', 'BCA', 88);
+INSERT INTO STUDENT7b VALUES (105, 'Kiran', 'BBA', 82);
+INSERT INTO STUDENT7b VALUES (106, 'Anjali', 'MCA', 91);
+
+COMMIT;
+
+![output](<Screenshot (213).png>)
+
+-- 3. Create stored function
+CREATE OR REPLACE FUNCTION COUNT_STUDENTS (
+    P_COURSE IN VARCHAR2
+)
+RETURN NUMBER
+IS
+    V_TOTAL_STUDENTS NUMBER;
+BEGIN
+    -- Count students enrolled in the specified course
+    SELECT COUNT(*)
+    INTO V_TOTAL_STUDENTS
+    FROM STUDENT7b
+    WHERE UPPER(COURSE) = UPPER(P_COURSE);
+    RETURN V_TOTAL_STUDENTS;
+END;
+/
+ ![output](<Screenshot (214).png>)
+
+-- 4. Invoke the function using SELECT statement
+SELECT
+    'BCA' AS COURSE,
+    COUNT_STUDENTS('BCA') AS TOTAL_STUDENTS
+FROM DUAL;
+![output](<Screenshot (215).png>)
+
+
+7b3
+
+SET SERVEROUTPUT ON;
+
+-- 1. Create STUDENT table
+CREATE TABLE STUDENT7b3 (
+    STUDENT_ID   NUMBER PRIMARY KEY,
+    STUDENT_NAME VARCHAR2(50),
+    MARKS        NUMBER
+);
+![output](<Screenshot (216).png>)
+-- 2. Insert sample student records
+INSERT INTO STUDENT7b3 VALUES (101, 'Rahul', 85);
+INSERT INTO STUDENT7b3 VALUES (102, 'Priya', 72);
+INSERT INTO STUDENT7b3 VALUES (103, 'Arun', 56);
+INSERT INTO STUDENT7b3 VALUES (104, 'Sneha', 42);
+INSERT INTO STUDENT7b3 VALUES (105, 'Kiran', 28);
+
+COMMIT;
+![output](<Screenshot (217).png>)
+
+-- 3. Create the stored function
+CREATE OR REPLACE FUNCTION GET_GRADE (
+    P_MARKS IN NUMBER
+)
+RETURN VARCHAR2
+IS
+    V_GRADE VARCHAR2(20);
+BEGIN
+    -- Determine grade using IF-ELSIF-ELSE
+    IF P_MARKS >= 75 THEN
+        V_GRADE := 'Distinction';
+ ELSIF P_MARKS >= 60 THEN
+        V_GRADE := 'First Class';
+ ELSIF P_MARKS >= 50 THEN
+        V_GRADE := 'Second Class';
+ ELSIF P_MARKS >= 35 THEN
+        V_GRADE := 'Pass';
+  ELSE
+        V_GRADE := 'Fail';
+    END IF;
+    RETURN V_GRADE;
+END;
+/
+ ![output](<Screenshot (218).png>)
+
+-- 4. Invoke the function using SELECT statement
+SELECT
+    STUDENT_NAME,
+    MARKS,
+    GET_GRADE(MARKS) AS GRADE
+FROM STUDENT7b3;

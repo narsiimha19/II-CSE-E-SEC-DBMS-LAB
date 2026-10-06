@@ -1,0 +1,48 @@
+7b2
+
+SET SERVEROUTPUT ON;
+
+-- 1. Create STUDENT table
+CREATE TABLE STUDENT7b (
+    STUDENT_ID   NUMBER PRIMARY KEY,
+    STUDENT_NAME VARCHAR2(50),
+    COURSE       VARCHAR2(50),
+    MARKS        NUMBER
+);
+
+-- 2. Insert sample student records
+INSERT INTO STUDENT7b VALUES (101, 'Rahul', 'BCA', 85);
+INSERT INTO STUDENT7b VALUES (102, 'Priya', 'BCA', 90);
+INSERT INTO STUDENT7b VALUES (103, 'Arun', 'BBA', 78);
+INSERT INTO STUDENT7b VALUES (104, 'Sneha', 'BCA', 88);
+INSERT INTO STUDENT7b VALUES (105, 'Kiran', 'BBA', 82);
+INSERT INTO STUDENT7b VALUES (106, 'Anjali', 'MCA', 91);
+
+COMMIT;
+
+
+-- 3. Create stored function
+CREATE OR REPLACE FUNCTION COUNT_STUDENTS (
+    P_COURSE IN VARCHAR2
+)
+RETURN NUMBER
+IS
+    V_TOTAL_STUDENTS NUMBER;
+BEGIN
+    -- Count students enrolled in the specified course
+    SELECT COUNT(*)
+    INTO V_TOTAL_STUDENTS
+    FROM STUDENT7b
+    WHERE UPPER(COURSE) = UPPER(P_COURSE);
+
+    -- Return the total number of students
+    RETURN V_TOTAL_STUDENTS;
+END;
+/
+ 
+
+-- 4. Invoke the function using SELECT statement
+SELECT
+    'BCA' AS COURSE,
+    COUNT_STUDENTS('BCA') AS TOTAL_STUDENTS
+FROM DUAL;
