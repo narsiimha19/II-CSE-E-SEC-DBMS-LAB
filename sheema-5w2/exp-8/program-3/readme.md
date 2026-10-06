@@ -1,0 +1,57 @@
+SET SERVEROUTPUT ON;
+DROP TABLE EMPLOYEE;
+SELECT * FROM EMPLOYEE;
+
+-- Create EMPLOYEE table
+CREATE TABLE EMPLOYEE
+(
+    EMPLOYEE_ID NUMBER(4) PRIMARY KEY,
+    EMPLOYEE_NAME VARCHAR2(30),
+    DEPARTMENT VARCHAR2(20),
+    SALARY NUMBER(10,2)
+);
+
+-- Insert sample records
+INSERT INTO EMPLOYEE VALUES (101, 'Rahul', 'HR', 35000);
+INSERT INTO EMPLOYEE VALUES (102, 'Sneha', 'Sales', 42000);
+INSERT INTO EMPLOYEE VALUES (103, 'Arjun', 'HR', 38000);
+INSERT INTO EMPLOYEE VALUES (104, 'Priya', 'Finance', 45000);
+INSERT INTO EMPLOYEE VALUES (105, 'Kiran', 'Sales', 39000);
+
+COMMIT;
+
+-- FOR UPDATE cursor
+DECLARE
+    CURSOR C_EMPLOYEE IS
+        SELECT EMPLOYEE_ID,
+               EMPLOYEE_NAME,
+               DEPARTMENT,
+               SALARY
+        FROM EMPLOYEE
+        FOR UPDATE;
+
+BEGIN
+    FOR REC IN C_EMPLOYEE LOOP
+
+        -- Increase salary by 10%
+        UPDATE EMPLOYEE
+        SET SALARY = SALARY * 1.10
+        WHERE CURRENT OF C_EMPLOYEE;
+
+    END LOOP;
+
+    COMMIT;
+
+    DBMS_OUTPUT.PUT_LINE('Salary increased by 10% for all employees.');
+    DBMS_OUTPUT.PUT_LINE('Records updated successfully.');
+
+END;
+/
+![output 1](op19.png)
+-- Display updated table
+SELECT EMPLOYEE_ID,
+       EMPLOYEE_NAME,
+       DEPARTMENT,
+       SALARY
+FROM EMPLOYEE;
+![output 2](op20.png)

@@ -1,0 +1,44 @@
+SET SERVEROUTPUT ON;
+
+CREATE TABLE STUDENT1 (
+    STUDENT_ID NUMBER(5) PRIMARY KEY,
+    STUDENT_NAME VARCHAR2(30),
+    COURSE VARCHAR2(20),
+    MARKS NUMBER(3)
+);
+
+SET SERVEROUTPUT ON;
+
+BEGIN
+    INSERT INTO STUDENT1
+    VALUES (201, 'Ravi', 'CSE', 85);
+
+    INSERT INTO STUDENT1
+    VALUES (202, 'Anjali', 'ECE', 78);
+
+    SAVEPOINT SP1;
+
+    INSERT INTO STUDENT1
+    VALUES (203, 'Kiran', 'IT', 65);
+
+    DBMS_OUTPUT.PUT_LINE('Three student records inserted.');
+
+    ROLLBACK TO SP1;
+
+    DBMS_OUTPUT.PUT_LINE('Rollback to SAVEPOINT SP1 completed.');
+    DBMS_OUTPUT.PUT_LINE('Third student record has been rolled back.');
+
+    COMMIT;
+
+    DBMS_OUTPUT.PUT_LINE('Transaction committed successfully.');
+
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+        ROLLBACK;
+END;
+/
+![outout 1](FIRST.png)
+SELECT * FROM STUDENT1
+WHERE STUDENT_ID BETWEEN 201 AND 203;
+![output 2](SECOND.png)

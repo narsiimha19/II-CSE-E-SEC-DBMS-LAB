@@ -1,0 +1,67 @@
+-- EXPERIMENT-7(b)
+-- PROGRAM 3: DETERMINE STUDENT GRADE USING A COMPLEX STORED FUNCTION
+
+SET SERVEROUTPUT ON;
+
+-- Create STUDENT12 table
+
+CREATE TABLE STUDENT12
+(
+    STUDENT_ID NUMBER(4) PRIMARY KEY,
+    STUDENT_NAME VARCHAR2(30),
+    MARKS NUMBER(3)
+);
+
+-- Insert sample student records
+
+INSERT INTO STUDENT12 VALUES (101, 'Rahul', 82);
+INSERT INTO STUDENT12 VALUES (102, 'Sneha', 74);
+INSERT INTO STUDENT12 VALUES (103, 'Arjun', 58);
+INSERT INTO STUDENT12 VALUES (104, 'Priya', 91);
+INSERT INTO STUDENT12 VALUES (105, 'Kiran', 45);
+INSERT INTO STUDENT12 VALUES (106, 'Aman', 30);
+
+-- Save records
+
+COMMIT;
+
+
+-- Create Complex Stored Function
+
+CREATE OR REPLACE FUNCTION GET_GRADE
+(
+    P_MARKS IN NUMBER
+)
+RETURN VARCHAR2
+IS
+    V_GRADE VARCHAR2(20);
+BEGIN
+
+    IF P_MARKS >= 75 THEN
+        V_GRADE := 'Distinction';
+
+    ELSIF P_MARKS >= 60 THEN
+        V_GRADE := 'First Class';
+
+    ELSIF P_MARKS >= 50 THEN
+        V_GRADE := 'Second Class';
+
+    ELSIF P_MARKS >= 35 THEN
+        V_GRADE := 'Pass';
+
+    ELSE
+        V_GRADE := 'Fail';
+
+    END IF;
+
+    RETURN V_GRADE;
+
+END;
+/
+
+-- Invoke the function using SQL SELECT statement
+
+SELECT STUDENT_NAME,
+       MARKS,
+       GET_GRADE(MARKS) AS GRADE
+FROM STUDENT12;
