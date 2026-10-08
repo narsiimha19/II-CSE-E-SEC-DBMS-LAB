@@ -1,0 +1,122 @@
+## CREATE STUDENT TABLE
+```
+CREATE TABLE STUDENT (
+    STUDENT_ID NUMBER PRIMARY KEY,
+    STUDENT_NAME VARCHAR2(50),
+    COURSE VARCHAR2(50),
+    MARKS NUMBER
+);
+```
+![output](exp7 output 1)
+##
+```
+SELECT * FROM STUDENT;
+```
+![output](exp7 output 3)
+
+##INSERT STUDENT TABLE
+```
+INSERT INTO STUDENT VALUES (1, 'Anu', 'CSE', 85);
+INSERT INTO STUDENT VALUES (2, 'Ravi', 'ECE', 72);
+INSERT INTO STUDENT VALUES (3, 'Sita', 'CSE', 68);
+INSERT INTO STUDENT VALUES (4, 'Rahul', 'CSE', 91);
+INSERT INTO STUDENT VALUES (5, 'Priya', 'ECE', 78);
+
+```
+![output](exp7 output 2)
+
+## PL/SQL CODE
+```
+CREATE OR REPLACE FUNCTION COUNT_STUDENTS(
+    P_COURSE IN VARCHAR2
+)
+RETURN NUMBER
+IS
+    V_COUNT NUMBER;
+BEGIN
+    SELECT COUNT(*)
+    INTO V_COUNT
+    FROM STUDENT
+    WHERE COURSE = P_COURSE;
+
+    RETURN V_COUNT;
+END;
+/
+```
+![output](exp7 output 4)
+
+##
+```
+SELECT 'CSE' AS COURSE,
+       COUNT_STUDENTS('CSE') AS TOTAL_STUDENTS
+FROM DUAL;
+```
+![output](exp7 output 5)
+
+## CREATE STUDENT TABLE
+```
+CREATE TABLE STUDENT (
+    STUDENT_ID NUMBER PRIMARY KEY,
+    STUDENT_NAME VARCHAR2(50),
+    MARKS NUMBER
+);
+```
+![output](exp7 output 6)
+
+##
+```
+SELECT * FROM STUDENT;
+```
+![output](exp7 output 8)
+
+##
+```
+INSERT INTO STUDENT VALUES (1, 'Anu', 85);
+INSERT INTO STUDENT VALUES (2, 'Ravi', 68);
+INSERT INTO STUDENT VALUES (3, 'Sita', 55);
+INSERT INTO STUDENT VALUES (4, 'Rahul', 42);
+INSERT INTO STUDENT VALUES (5, 'Priya', 28);
+
+```
+![output](exp7 output 7)
+
+##PL/SQL CODE
+```
+CREATE OR REPLACE FUNCTION GET_GRADE(
+    P_MARKS IN NUMBER
+)
+RETURN VARCHAR2
+IS
+    V_GRADE VARCHAR2(20);
+BEGIN
+    IF P_MARKS >= 75 THEN
+        V_GRADE := 'Distinction';
+
+    ELSIF P_MARKS >= 60 THEN
+        V_GRADE := 'First Class';
+
+    ELSIF P_MARKS >= 50 THEN
+        V_GRADE := 'Second Class';
+
+    ELSIF P_MARKS >= 35 THEN
+        V_GRADE := 'Pass';
+
+    ELSE
+        V_GRADE := 'Fail';
+    END IF;
+
+    RETURN V_GRADE;
+END;
+/
+```
+
+![output](exp7 output 9)
+
+##
+```
+SELECT STUDENT_NAME,
+       MARKS,
+       GET_GRADE(MARKS) AS GRADE
+FROM STUDENT;
+```
+![output](exp7 output 10)

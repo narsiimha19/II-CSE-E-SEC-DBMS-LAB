@@ -1,0 +1,26 @@
+
+## CREATE SECTION TABLE
+```
+CREATE TABLE SECTION1(
+section_identifier NUMBER,
+course_number NUMBER,
+semester VARCHAR2(10),
+year NUMBER,
+instructor VARCHAR2(20)
+);
+```
+
+## DESCRIBE SECTION TABLE
+```
+DESC section;
+```
+## INSERT SECTION TABLE
+```
+INSERT INTO section VALUES(85,1301,'FALL',07,'KING');
+INSERT INTO section VALUES(92,1310,'FALL',08,'ANDERSON');
+```
+## DISPLAY SECTION TABLE
+```
+SELECT * FROM section;
+
+```

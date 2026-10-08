@@ -1,0 +1,217 @@
+Experiment-12
+
+##
+```
+CREATE TABLE CUSTOMER (
+    CUSTOMER_ID NUMBER PRIMARY KEY,
+    CUSTOMER_NAME VARCHAR2(50),
+    EMAIL VARCHAR2(100),
+    PHONE VARCHAR2(15)
+);
+```
+![output](exp12 output 1)
+
+##
+```
+CREATE TABLE PRODUCT (
+    PRODUCT_ID NUMBER PRIMARY KEY,
+    PRODUCT_NAME VARCHAR2(100),
+    PRICE NUMBER(10,2)
+);
+```
+![output](exp12 output 2)
+
+##
+```
+CREATE TABLE ORDERS (
+    ORDER_ID NUMBER PRIMARY KEY,
+    CUSTOMER_ID NUMBER,
+    ORDER_DATE DATE,
+    FOREIGN KEY (CUSTOMER_ID)
+        REFERENCES CUSTOMER(CUSTOMER_ID)
+);
+```
+![output](exp12 output 3)
+
+##
+```
+CREATE TABLE ORDER_ITEM (
+    ORDER_ID NUMBER,
+    PRODUCT_ID NUMBER,
+    QUANTITY NUMBER,
+    PRIMARY KEY (ORDER_ID, PRODUCT_ID),
+    FOREIGN KEY (ORDER_ID)
+        REFERENCES ORDERS(ORDER_ID),
+    FOREIGN KEY (PRODUCT_ID)
+        REFERENCES PRODUCT(PRODUCT_ID)
+);
+```
+![output](exp12 output 4)
+
+##
+```
+CREATE TABLE INVENTORY (
+    PRODUCT_ID NUMBER PRIMARY KEY,
+    STOCK_QUANTITY NUMBER,
+    FOREIGN KEY (PRODUCT_ID)
+        REFERENCES PRODUCT(PRODUCT_ID)
+);
+```
+![output](exp12 output 5)
+
+## Insert Sample Data
+```
+INSERT INTO CUSTOMER VALUES
+(1, 'Rahul', 'rahul@gmail.com', '9876543210');
+
+INSERT INTO CUSTOMER VALUES
+(2, 'Priya', 'priya@gmail.com', '9876543211');
+
+INSERT INTO CUSTOMER VALUES
+(3, 'Arun', 'arun@gmail.com', '9876543212');
+```
+![output](exp12 output 6)
+
+##
+```
+SELECT * FROM CUSTOMER;
+```
+##
+```
+INSERT INTO PRODUCT VALUES
+(101, 'Laptop', 55000);
+
+INSERT INTO PRODUCT VALUES
+(102, 'Mouse', 800);
+
+INSERT INTO PRODUCT VALUES
+(103, 'Keyboard', 1500);
+```
+##
+```
+SELECT * FROM PRODUCT;
+```
+##
+```
+INSERT INTO ORDERS VALUES
+(1001, 1, DATE '2026-09-20');
+
+INSERT INTO ORDERS VALUES
+(1002, 2, DATE '2026-09-21');
+```
+
+##
+```
+SELECT * FROM ORDERS;
+```
+![output](exp12 output 9)
+
+##
+```
+INSERT INTO ORDER_ITEM VALUES
+(1001, 101, 1);
+
+INSERT INTO ORDER_ITEM VALUES
+(1001, 102, 2);
+
+INSERT INTO ORDER_ITEM VALUES
+(1002, 103, 1);
+```
+##
+```
+SELECT * FROM ORDER_ITEM;
+```
+![output](exp12 output 10)
+##
+```
+INSERT INTO INVENTORY VALUES
+(101, 20);
+
+INSERT INTO INVENTORY VALUES
+(102, 50);
+
+INSERT INTO INVENTORY VALUES
+(103, 30);
+```
+
+##
+```
+SELECT * FROM INVENTORY;
+```
+COMMIT;
+
+![output](exp12 output 11)
+
+## Display all customers
+```
+SELECT * FROM CUSTOMER;
+```
+![output](exp12 output 7)
+
+## Display all products
+```
+SELECT * FROM PRODUCT;
+```
+![output](exp12 output 8)
+
+## Display current inventory
+```
+SELECT P.PRODUCT_NAME, I.STOCK_QUANTITY
+FROM PRODUCT P
+JOIN INVENTORY I
+ON P.PRODUCT_ID = I.PRODUCT_ID;
+```
+![output](exp12 output 12)
+
+## Display all orders of a particular customer
+```
+SELECT O.ORDER_ID, O.ORDER_DATE
+FROM ORDERS O
+JOIN CUSTOMER C
+ON O.CUSTOMER_ID = C.CUSTOMER_ID
+WHERE C.CUSTOMER_ID = 1;
+```
+![output](exp12 output 13)
+
+## Display order details
+```
+SELECT O.ORDER_ID,
+       C.CUSTOMER_NAME,
+       P.PRODUCT_NAME,
+       OI.QUANTITY
+FROM ORDERS O
+JOIN CUSTOMER C
+ON O.CUSTOMER_ID = C.CUSTOMER_ID
+JOIN ORDER_ITEM OI
+ON O.ORDER_ID = OI.ORDER_ID
+JOIN PRODUCT P
+ON OI.PRODUCT_ID = P.PRODUCT_ID;
+```
+![output](exp12 output 15)
+
+## Create a View
+```
+CREATE VIEW ORDER_DETAILS AS
+SELECT O.ORDER_ID,
+       C.CUSTOMER_NAME,
+       P.PRODUCT_NAME,
+       OI.QUANTITY,
+       P.PRICE,
+       OI.QUANTITY * P.PRICE AS TOTAL
+FROM ORDERS O
+JOIN CUSTOMER C
+ON O.CUSTOMER_ID = C.CUSTOMER_ID
+JOIN ORDER_ITEM OI
+ON O.ORDER_ID = OI.ORDER_ID
+JOIN PRODUCT P
+ON OI.PRODUCT_ID = P.PRODUCT_ID;
+```
+![output](exp12 output 16)
+
+## Display the view
+```
+SELECT * FROM ORDER_DETAILS;
+```
+![output](exp12 output 17)
+
+
