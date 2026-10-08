@@ -1,0 +1,247 @@
+#.1
+```
+CREATE TABLE DEPT
+(
+    DNO NUMBER PRIMARY KEY,
+    DNAME VARCHAR2(30) NOT NULL
+);
+```
+![ouput](01.png)
+```
+```
+#.2
+```
+CREATE TABLE STUDENT5
+(
+    SID NUMBER PRIMARY KEY,
+    SNAME VARCHAR2(30) NOT NULL,
+    DID NUMBER
+    );
+```
+![output](02.png)
+```
+```    
+#.3
+```
+ALTER TABLE STUDENTS 
+ADD CONSTRAINT FK_DID 
+FOREIGN KEY (DID) REFERENCES DEPT(DNO);
+```
+![output](03.png)
+```
+```
+
+#.4
+```
+ALTER TABLE STUDENT5
+ADD CONSTRAINT STUDENT5_PK PRIMARY KEY (SID);
+
+ALTER TABLE STUDENT5
+MODIFY SNAME NOT NULL;
+
+ALTER TABLE STUDENT5
+ADD CONSTRAINT STUDENT5_FK
+FOREIGN KEY (DID) REFERENCES DEPT(DNO);
+```
+![output](05.png)
+```
+```
+
+#.5
+```
+INSERT INTO DEPT VALUES (10, 'CSE');
+INSERT INTO DEPT VALUES (20, 'ME');
+INSERT INTO DEPT VALUES (30, 'CE');
+INSERT INTO DEPT VALUES (40, 'EEE');
+INSERT INTO DEPT VALUES (50, 'ECE');
+INSERT INTO DEPT VALUES (60, 'CSM');
+INSERT INTO DEPT VALUES (70, 'CSD');
+
+COMMIT;
+```
+![output](05.png)
+```
+```
+#.6
+```
+INSERT INTO STUDENT5 VALUES (101, 'Rahul', 10);
+INSERT INTO STUDENT5 VALUES (102, 'Sneha', 20);
+INSERT INTO STUDENT5 VALUES (103, 'Arjun', 10);
+INSERT INTO STUDENT5 VALUES (104, 'Priya', 30);
+INSERT INTO STUDENT5 VALUES (105, 'Kiran', 40);
+INSERT INTO STUDENT5 VALUES (106, 'Nikhil', 50);
+INSERT INTO STUDENT5 VALUES (107, 'Anjali', 60);
+INSERT INTO STUDENT5 VALUES (108, 'Ravi', 10);
+INSERT INTO STUDENT5 VALUES (109, 'Pooja', 20);
+INSERT INTO STUDENT5 VALUES (110, 'Aman', NULL);
+
+COMMIT;
+```
+![output](06.png)
+```
+```
+#.7
+```
+SELECT SID, SNAME, DNO, DNAME
+FROM STUDENT5 S
+JOIN DEPT D
+ON S.DID=D.DNO;
+SELECT * FROM DEPT;
+```
+![output](07,png)
+```
+```
+
+#.8
+```
+SELECT S.SID,
+       S.SNAME,
+       D.DNAME
+FROM STUDENT5 S
+INNER JOIN DEPT D
+ON S.DID = D.DNO;
+```
+![output](08.png)
+```
+```
+#.9
+```
+SELECT S.SID,
+       D.DNO,
+       D.DNAME
+FROM STUDENT5 S
+JOIN DEPT D
+ON S.DID > D.DNO;
+```
+![output](09.png)
+```
+```
+#.10
+```
+SELECT S.SID,
+       S.SNAME,
+       S.DID,
+       D.DNAME
+FROM STUDENT5 S
+ON S.DID = D.DNO;
+```
+![output](010.png)
+```
+```
+#.11
+```
+SELECT S.SID,
+       S.SNAME,
+       D.DNO,
+       D.DNAME
+RIGHT OUTER JOIN DEPT D
+ON S.DID = D.DNO;
+```
+![output](011.png)
+```
+```
+#.12
+```
+SELECT S.SID,
+       S.SNAME,
+       D.DNO,
+FROM STUDENT5 S
+FULL OUTER JOIN DEPT D
+ON S.DID = D.DNO;
+```
+![output](012.png)
+```
+```
+#.13
+```
+SELECT S.SID,
+       S.SNAME,
+       D.DNAME
+FROM STUDENT5 S
+LEFT OUTER JOIN DEPT D
+ON S.DID = D.DNO;
+```
+![output](013.png)
+```
+```
+#.14
+```
+SELECT S.SID,
+       S.SNAME,
+       D.DNAME
+FROM STUDENT5 S
+RIGHT OUTER JOIN DEPT D
+ON S.DID = D.DNO;
+```
+![output](014.png)
+```
+```
+#.15
+```
+SELECT S.SID,
+       S.SNAME,
+       D.DNAME
+FROM STUDENT5 S
+FULL OUTER JOIN DEPT D
+ON S.DID = D.DNO;
+```
+![output](015.png)
+```
+```
+#.16
+```
+SELECT S.SID,
+       S.SNAME,
+       D.DNO,
+       D.DNAME
+FROM STUDENT5 S
+LEFT OUTER JOIN DEPT D
+ON S.DID >= D.DNO;
+```
+![output](016.png)
+```
+```
+#.17
+```
+SELECT S.SID,
+       S.SNAME,
+       D.DNO,
+       D.DNAME
+FROM STUDENT5 S
+RIGHT OUTER JOIN DEPT D
+ON S.DID >= D.DNO;
+```
+![output](017.png)
+```
+```
+#.18
+```
+SELECT S.SID,
+       S.SNAME,
+       D.DNO,
+       D.DNAME
+FROM STUDENT5 S
+FULL OUTER JOIN DEPT D
+ON S.DID >= D.DNO;
+```
+![output](018.png)
+```
+```
+#.19
+```
+SELECT S.SID,
+       S.SNAME,
+       D.DNO,
+       D.DNAME
+FROM STUDENT5 S
+CROSS JOIN DEPT D;       D.DNAME
+FROM STUDENT5 S
+LEFT OUTER JOIN DEPT D
+
+       S.SNAME,
+       D.DNO,
+```
+![output](019.png)
+```
+```
+

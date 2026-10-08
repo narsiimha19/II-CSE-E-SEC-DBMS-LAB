@@ -1,0 +1,171 @@
+
+Table EMPLOYEE created.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+>>Query Run In:Query Result
+
+View EMP_VIEW created.
+
+
+View EMP_BASIC created.
+
+
+View IT_EMPLOYEES created.
+
+
+View HIGH_SALARY created.
+
+
+View HYDERABAD_EMP created.
+
+
+View FEMALE_EMP created.
+
+
+View RECENT_EMPLOYEES created.
+
+
+Error starting at line : 235 in command -
+CREATE VIEW RECENT_EMPLOYEES AS
+SELECT *
+FROM EMPLOYEE
+WHERE HIRE_DATE >= TO_DATE('01-JAN-2020','DD-MON-YYYY')
+Error report -
+ORA-00955: name is already used by an existing object
+
+https://docs.oracle.com/error-help/db/ora-00955/00955. 00000 -  "name is already used by an existing object"
+*Cause:    An attempt was made to create a database object (such
+           as a table, view, cluster, index, or synonym) that already
+           existed. A user's database objects must have distinct names.
+*Action:   Enter a unique name for the database object or modify
+           or drop the existing object so it can be reused.
+
+Error starting at line : 235 in command -
+CREATE VIEW RECENT_EMPLOYEES AS
+SELECT *
+FROM EMPLOYEE
+WHERE HIRE_DATE >= TO_DATE('01-JAN-2020','DD-MON-YYYY')
+Error report -
+ORA-00955: name is already used by an existing object
+
+https://docs.oracle.com/error-help/db/ora-00955/00955. 00000 -  "name is already used by an existing object"
+*Cause:    An attempt was made to create a database object (such
+           as a table, view, cluster, index, or synonym) that already
+           existed. A user's database objects must have distinct names.
+*Action:   Enter a unique name for the database object or modify
+           or drop the existing object so it can be reused.
+
+View EMP_BASIC created.
+
+
+View EMP_SALARY_VIEW created.
+
+
+Error starting at line : 251 in command -
+CREATE VIEW EMP_SALARY_VIEW AS
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY
+FROM EMPLOYEE
+Error report -
+ORA-00955: name is already used by an existing object
+
+https://docs.oracle.com/error-help/db/ora-00955/00955. 00000 -  "name is already used by an existing object"
+*Cause:    An attempt was made to create a database object (such
+           as a table, view, cluster, index, or synonym) that already
+           existed. A user's database objects must have distinct names.
+*Action:   Enter a unique name for the database object or modify
+           or drop the existing object so it can be reused.
+
+Error starting at line : 251 in command -
+CREATE VIEW EMP_SALARY_VIEW AS
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY
+FROM EMPLOYEE
+WITH READ ONLY
+Error report -
+ORA-00955: name is already used by an existing object
+
+https://docs.oracle.com/error-help/db/ora-00955/00955. 00000 -  "name is already used by an existing object"
+*Cause:    An attempt was made to create a database object (such
+           as a table, view, cluster, index, or synonym) that already
+           existed. A user's database objects must have distinct names.
+*Action:   Enter a unique name for the database object or modify
+           or drop the existing object so it can be reused.
+
+Error starting at line : 251 in command -
+CREATE VIEW EMP_SALARY_VIEW AS
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY
+FROM EMPLOYEE
+WITH READ ONLY
+Error report -
+ORA-00955: name is already used by an existing object
+
+https://docs.oracle.com/error-help/db/ora-00955/00955. 00000 -  "name is already used by an existing object"
+*Cause:    An attempt was made to create a database object (such
+           as a table, view, cluster, index, or synonym) that already
+           existed. A user's database objects must have distinct names.
+*Action:   Enter a unique name for the database object or modify
+           or drop the existing object so it can be reused.
+
+View SALES_EMP created.
+
+
+Error starting at line : 251 in command -
+CREATE VIEW EMP_SALARY_VIEW AS
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY
+FROM EMPLOYEE
+WITH READ ONLY
+Error report -
+ORA-00955: name is already used by an existing object
+
+https://docs.oracle.com/error-help/db/ora-00955/00955. 00000 -  "name is already used by an existing object"
+*Cause:    An attempt was made to create a database object (such
+           as a table, view, cluster, index, or synonym) that already
+           existed. A user's database objects must have distinct names.
+*Action:   Enter a unique name for the database object or modify
+           or drop the existing object so it can be reused.
+
+1 row updated.
+
+
+Commit complete.
+
+
+1 row updated.
+
+
+Commit complete.
+
+
+1 row updated.
+
+
+Commit complete.
+

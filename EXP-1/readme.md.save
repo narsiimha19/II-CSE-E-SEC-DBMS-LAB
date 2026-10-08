@@ -1,0 +1,44 @@
+#.A 1. Create tables without constraints
+```
+CREATE TABLE STUDENT (
+    Name VARCHAR2(20),
+    Student_number NUMBER,
+    Class NUMBER,
+    Major VARCHAR2(20)
+);
+
+CREATE TABLE COURSE (
+    Course_name VARCHAR2(40),
+    Course_number VARCHAR2(10),
+    Credit_hours NUMBER,
+    Department VARCHAR2(20)
+);
+
+CREATE TABLE SECTION (
+    Section_identifier NUMBER,
+    Course_number VARCHAR2(10),
+    Semester VARCHAR2(10),
+    Year NUMBER,
+    Instructor VARCHAR2(20)
+);
+
+CREATE TABLE GRADE_REPORT (
+    Student_number NUMBER,
+    Section_identifier NUMBER,
+    Grade CHAR(1)
+);
+
+CREATE TABLE PREREQUISITE (
+    Course_number VARCHAR2(10),
+    Prerequisite_number VARCHAR2(10)
+);
+```
+![output](o1.png)
+```
+```
+#.A 2. Insert all values
+```
+INSERT INTO STUDENT VALUES ('Smith',17,1,'CS');
+INSERT INTO STUDENT VALUES ('Brown',8,2,'CS');
+ 
+
