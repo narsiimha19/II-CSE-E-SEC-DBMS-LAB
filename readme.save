@@ -1,0 +1,37 @@
+INSERT INTO reserves2 VALUES(31,104,'11/12/98');
+INSERT INTO reserves2 VALUES(64,101,'9/5/98');
+INSERT INTO reserves2 VALUES(64,102,'9/8/98');
+INSERT INTO reserves2 VALUES(74,103,'9/8/98');
+
+![OUTPUT](reserve 1)
+
+SELECT * FROM sailors1;
+SELECT * FROM boats1;
+SELECT * FROM reserves2;
+
+SELECT sname,age FROM sailors;
+
+SELECT * FROM sailors
+WHERE using > 7;
+
+SELECT s.sname
+FROM sailors s,reserves r
+WHERE s.sid=r.sid
+AND r.bid=103;
+
+SELECT DISTINCT r.sid
+FROM reserves r,boats b
+WHERE r.bid=b.bid
+AND b.color='red';
+
+SELECT DISTINCT s.sname
+FROM sailors s,reserves r,boats b
+WHERE s.sid=r.sid
+AND r.bid=b.bid
+AND b.color='red';
+
+SELECT DISTINCT b.color
+FROM sailors s,reserves r,boats b
+WHERE s.sid=r.sid
+AND r.sid=b.bid
+AND s.sname='lubber';

@@ -1,0 +1,97 @@
+#EXPEREMENT 2 STARTING
+
+#SAILORS TABLE CREATING
+CREATE TABLE sailors1(
+sid NUMBER PRIMARY KEY,
+sname VARCHAR2(30) NOT NULL,
+using NUMBER NOT NULL,
+age REAL NOT NULL);
+
+![OUTPUT](sailors)
+
+
+#BOATS TABLE CREATING
+CREATE TABLE boats1(
+bid NUMBER PRIMARY KEY,
+bname VARCHAR2(30),
+color VARCHAR2(20));
+
+![OUTPUT](boats)
+
+
+#RESERVES TABLE CREATING
+CREATE TABLE reserves2(
+sid NUMBER,
+bid NUMBER,
+day DATE,
+PRIMARY KEY(sid,bid,day),
+FOREIGN KEY(sid)REFERENCES
+sailors(sid),
+FOREIGN KEY(bid)REFERENCES
+boats1(bid));
+
+![OUTPUT](reserves)
+
+INSERT INTO sailors1 VALUES(22,'dustin',7,45.0);
+INSERT INTO sailors1 VALUES(29,'brutus',1,33.0);
+INSERT INTO sailors1 VALUES(31,'lubber',8,55.5);
+INSERT INTO sailors1 VALUES(32,'andy',8,25.5);
+INSERT INTO sailors1 VALUES(58,'rusty',10,35.0);
+INSERT INTO sailors1 VALUES(64,'horatio',7,35.0);
+INSERT INTO sailors1 VALUES(71,'zorba',10,16.0);
+INSERT INTO sailors1 VALUES(74,'horatio',9,35.0);
+INSERT INTO sailors1 VALUES(85,'art',3,25.5);
+INSERT INTO sailors1 VALUES(95,'bob',3,63.5);
+
+![OUTPUT](sailors 1)
+
+INSERT INTO boats1 VALUES(101,'interlake','blue');
+INSERT INTO boats1 VALUES(102,'interlake','red');
+INSERT INTO boats1 VALUES(103,'clippers','green');
+INSERT INTO boats1 VALUES(104,'marine','red');
+
+![OUTPUT](boats 1)
+
+INSERT INTO reserves2 VALUES(22,101,'10/10/98');
+INSERT INTO reserves2 VALUES(22,102,'10/10/98');
+INSERT INTO reserves2 VALUES(22,103,'10/8/98');
+INSERT INTO reserves2 VALUES(22,104,'10/7/98');
+INSERT INTO reserves2 VALUES(31,102,'11/10/98');
+INSERT INTO reserves2 VALUES(31,103,'11/6/98');
+INSERT INTO reserves2 VALUES(31,104,'11/12/98');
+INSERT INTO reserves2 VALUES(64,101,'9/5/98');
+INSERT INTO reserves2 VALUES(64,102,'9/8/98');
+INSERT INTO reserves2 VALUES(74,103,'9/8/98');
+
+![OUTPUT](reserve 1)
+
+SELECT * FROM sailors1;
+SELECT * FROM boats1;
+SELECT * FROM reserves2;
+
+SELECT sname,age FROM sailors;
+
+SELECT * FROM sailors
+WHERE using > 7;
+
+SELECT s.sname
+FROM sailors s,reserves r
+WHERE s.sid=r.sid
+AND r.bid=103;
+
+SELECT DISTINCT r.sid
+FROM reserves r,boats b
+WHERE r.bid=b.bid
+AND b.color='red';
+
+SELECT DISTINCT s.sname
+FROM sailors s,reserves r,boats b
+WHERE s.sid=r.sid
+AND r.bid=b.bid
+AND b.color='red';
+
+SELECT DISTINCT b.color
+FROM sailors s,reserves r,boats b
+WHERE s.sid=r.sid
+AND r.sid=b.bid
+AND s.sname='lubber';
