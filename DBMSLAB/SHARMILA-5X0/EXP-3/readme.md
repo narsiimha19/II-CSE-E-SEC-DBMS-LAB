@@ -1,0 +1,483 @@
+EXPERIMENT-3(a)       
+
+#.A.1
+```
+SELECT EMPLOYEE_ID, FIRST_NAME,
+       TO_CHAR(HIRE_DATE, 'DD-MON-YYYY') AS HIRE_DATE
+FROM EMPLOYEE;
+```
+![output](3.1a.png)
+```
+```
+#.A.2
+```
+SELECT EMPLOYEE_ID, FIRST_NAME,
+       TO_CHAR(SALARY, 'L99,999,999') AS SALARY
+FROM EMPLOYEE;
+```
+![outpu](3.2a.png)
+```
+```
+#.A.3
+```
+SELECT EMPLOYEE_ID, FIRST_NAME,
+       TO_NUMBER(SALARY) + 5000 AS NEW_SALARY
+FROM EMPLOYEE;
+```
+![OUTPUT](3.3a.png)
+```
+```
+#.A.4
+```
+SELECT *
+FROM EMPLOYEE
+WHERE HIRE_DATE > TO_DATE('01-JAN-2020', 'DD-MON-YYYY');
+```
+![output](3.4a.png)
+```
+```
+#.A.5
+```
+SELECT EMPLOYEE_ID,
+       FIRST_NAME || ' ' || LAST_NAME AS FULL_NAME
+FROM EMPLOYEE;
+```
+![output](3.5a.png)
+```
+```
+#.A.6
+```
+SELECT EMPLOYEE_ID,
+       CONCAT(FIRST_NAME, CONCAT(' ', LAST_NAME)) AS FULL_NAME
+FROM EMPLOYEE;
+```
+![output](3.6a.png)
+```
+```
+#.A.7
+```
+SELECT FIRST_NAME,
+       LPAD(FIRST_NAME, 10, '*') AS PADDED_NAME
+FROM EMPLOYEE;
+```
+![output](3.7a.png)
+```
+```
+#.A.8
+```
+SELECT FIRST_NAME,
+       RPAD(FIRST_NAME, 10, '*') AS PADDED_NAME
+FROM EMPLOYEE;
+```
+![output](3.8a.png)
+```
+```
+#.A.9
+```
+SELECT FIRST_NAME,
+       LTRIM(FIRST_NAME) AS TRIMMED_NAME
+FROM EMPLOYEE;
+```
+![output](3.9a.png)
+```
+```
+#.A.10
+```
+SELECT FIRST_NAME,
+       RTRIM(FIRST_NAME) AS TRIMMED_NAME
+FROM EMPLOYEE;
+```
+![output](3.10a.png)
+```
+```
+
+#.A.1
+```
+SELECT FIRST_NAME,
+       LOWER(FIRST_NAME) AS LOWERCASE_NAME
+FROM EMPLOYEE;
+```
+![OUTPUT](3.11a.png)
+```
+```
+#.A.12
+```
+SELECT FIRST_NAME,
+       UPPER(FIRST_NAME) AS UPPERCASE_NAME
+FROM EMPLOYEE;
+```
+![output](3.12a.png)
+```
+```
+#.A.13
+```
+SELECT FIRST_NAME,
+       INITCAP(FIRST_NAME) AS PROPER_NAME
+FROM EMPLOYEE;
+```
+![output](3.13a.png)
+```
+```
+#.A.14
+```
+SELECT FIRST_NAME,
+       LENGTH(FIRST_NAME) AS NAME_LENGTH
+FROM EMPLOYEE;
+```
+![output](3.14a.png)
+```
+```
+#.A15
+```
+SELECT FIRST_NAME,
+       SUBSTR(FIRST_NAME, 1, 3) AS FIRST_THREE
+FROM EMPLOYEE;
+```
+![output](3.15a.png)
+```
+```
+#.A.16
+```
+SELECT FIRST_NAME,
+       INSTR(LOWER(FIRST_NAME), 'a') AS POSITION_OF_A
+FROM EMPLOYEE;
+```
+![output](3.16a.png)
+```
+```
+#.A.17
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME,
+       HIRE_DATE, SYSDATE AS CURRENT_DATE
+FROM EMPLOYEE;
+```
+![output](3.17a.png)
+```
+```
+#.A.18
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE,
+       NEXT_DAY(HIRE_DATE, 'MONDAY') AS NEXT_MONDAY
+FROM EMPLOYEE;
+```
+![output](3.18a.png)
+```
+```
+#.A.19
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE,
+       ADD_MONTHS(HIRE_DATE, 6) AS AFTER_SIX_MONTHS
+FROM EMPLOYEE;
+```
+![output](3.19a.png)
+```
+```
+#.A.20
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE,
+       LAST_DAY(HIRE_DATE) AS LAST_DAY_OF_MONTH
+FROM EMPLOYEE;
+```
+![output](3.20a.png)
+```
+```
+#.A.21
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE,
+       ROUND(MONTHS_BETWEEN(SYSDATE, HIRE_DATE), 2) AS MONTHS_WORKED
+FROM EMPLOYEE;
+```
+![output](3.21a.png)
+```
+```
+#.A.22
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, SALARY,
+       LEAST(SALARY, 60000) AS SMALLER_VALUE
+FROM EMPLOYEE;
+```
+![output](3.22a.png)
+```
+```
+#.A.23
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, SALARY,
+       GREATEST(SALARY, 60000) AS GREATER_VALUE
+FROM EMPLOYEE;
+```
+![output](3.23a.png)
+```
+```
+#.A.24
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE,
+       TRUNC(HIRE_DATE, 'MONTH') AS FIRST_DAY_OF_MONTH
+FROM EMPLOYEE;
+```
+![output](3.24a.png)
+```
+```
+
+#.A.25
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE,
+       ROUND(HIRE_DATE, 'MONTH') AS ROUNDED_DATE
+FROM EMPLOYEE;
+```
+![output](3.25a.png)
+```
+```
+#.A.26
+```
+SELECT EMPLOYEE_ID, FIRST_NAME,
+       TO_CHAR(HIRE_DATE, 'DAY, DD-MON-YYYY') AS FORMATTED_DATE
+FROM EMPLOYEE;
+```
+![output](3.26a.png)
+```
+```
+#.A.27
+```
+SELECT *
+FROM EMPLOYEE
+WHERE HIRE_DATE < TO_DATE('01-JAN-2019', 'DD-MON-YYYY');
+```
+![output](3.27a.png)
+```
+```
+EXPERIMENT-3(b)
+
+#.A.1
+```
+CREATE VIEW EMP_VIEW AS
+SELECT *
+FROM EMPLOYEE;
+```
+![output](3.1b.png)
+```
+```
+#.A.2
+```
+CREATE VIEW EMP_BASIC AS
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, DEPARTMENT, SALARY
+FROM EMPLOYEE;
+```
+![output](3.2b.png)
+```
+```
+#.A.3
+```
+SELECT *
+FROM EMP_VIEW;
+
+```
+![output](3.3b.png)
+```
+```
+#.A.4
+```
+CREATE VIEW IT_EMPLOYEES AS
+SELECT *
+FROM EMPLOYEE
+WHERE DEPARTMENT = 'IT';
+```
+![output](3.4b.png)
+```
+```
+#.A.5
+```
+CREATE VIEW HIGH_SALARY AS
+SELECT *
+FROM EMPLOYEE
+WHERE SALARY > 60000;
+```
+![output](3.5b.png)
+```
+```
+#.A.6
+```
+CREATE VIEW HYDERABAD_EMP AS
+SELECT *
+FROM EMPLOYEE
+WHERE CITY = 'Hyderabad';
+```
+![output](3.6b.png)
+```
+```
+#.A.7
+```
+CREATE VIEW FEMALE_EMP AS
+WHERE GENDER = 'Female';
+```
+![output](3.7b.png)
+```
+```
+#.A.8
+```
+CREATE VIEW RECENT_EMPLOYEES AS
+FROM EMPLOYEE
+WHERE HIRE_DATE >= TO_DATE('01-JAN-2020','DD-MON-YYYY');
+```
+![output](3.8b.png)
+```
+```
+#.B.10
+```
+CREATE OR REPLACE VIEW EMP_BASIC AS
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME,
+       DEPARTMENT, SALARY, CITY
+FROM EMPLOYEE;
+```
+![output](o10(i).png)
+```
+```
+#.B.11
+```
+CREATE VIEW EMP_SALARY_VIEW AS
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY
+FROM EMPLOYEE
+WITH READ ONLY;
+```
+![output](o11(i).png)
+```
+```
+#.B.12
+```
+CREATE VIEW SALES_EMP AS
+SELECT *
+FROM EMPLOYEE
+WHERE DEPARTMENT = 'Sales'
+WITH CHECK OPTION;
+```
+![output](o12(i).png)
+```
+```
+#.B.13
+```
+UPDATE EMP_BASIC
+SET SALARY = 75000
+WHERE EMPLOYEE_ID = 101;
+```
+![output](o13(i).png)
+```
+```
+
+#.B.14
+```
+DELETE FROM EMP_VIEW
+WHERE EMPLOYEE_ID = 107;
+```
+![output](o14(i).png)
+```
+```
+
+#.B.15
+```
+INSERT INTO EMP_BASIC
+VALUES (111, 'Ravi', 'Kumar', 'IT', 50000, 'Hyderabad');
+```
+![output](o15(i).png)
+```
+```
+
+#.B.16
+```
+DESC EMP_BASIC;
+```
+![output](o16(i).png)
+```
+```
+#.B.17
+```
+SELECT *
+FROM IT_EMPLOYEES;
+```
+![output](o17(i).png)
+```
+```
+#.B.18
+```
+SELECT *
+FROM HIGH_SALARY
+WHERE SALARY > 70000;
+```
+![output](o18(i).png)
+```
+```
+#.B.19
+```
+SELECT *
+FROM FEMALE_EMP;
+```
+![output](o19(i).png)
+```
+```
+#.B.20
+```
+SELECT FIRST_NAME, SALARY
+FROM HYDERABAD_EMP;
+```
+![output](o20(i).png)
+```
+```
+#.B.21
+```
+DROP VIEW EMP_VIEW;
+```
+![output](o21(i).png)
+```
+```
+#.B.22
+```
+DROP VIEW HIGH_SALARY;
+```
+![output](o22(i).png)
+```
+```
+#.B.23
+```
+DROP VIEW EMP_BASIC;
+```
+![output](o23(i).png)
+```
+```
+#.B.24
+```
+CREATE VIEW HR_EMPLOYEES AS
+SELECT *
+FROM EMPLOYEE
+WHERE DEPARTMENT = 'HR';
+```
+![output](o24(i).png)
+```
+```
+#.B.25
+```
+CREATE VIEW MARKETING_EMP AS
+SELECT EMPLOYEE_ID, FIRST_NAME, DEPARTMENT, SALARY
+FROM EMPLOYEE
+WHERE DEPARTMENT = 'Marketing';
+```
+![output](o25(i).png)
+```
+```
+#.B.26
+```
+CREATE VIEW TOP_EARNERS AS
+SELECT *
+FROM EMPLOYEE
+WHERE SALARY > 70000;
+```
+![output](o26(i).png)
+```
+```
+#.B.27
+```
+CREATE VIEW EMP_CITY AS
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, CITY
+FROM EMPLOYEE;
+```
+![output](o27(i).png)
+```
+```
+
