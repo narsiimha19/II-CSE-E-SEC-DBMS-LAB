@@ -1,0 +1,71 @@
+SET SERVEROUTPUT ON;
+
+-- Create main employee table
+CREATE TABLE EMPLOYEE16
+(
+    EMPLOYEE_ID NUMBER(4) PRIMARY KEY,
+    EMPLOYEE_NAME VARCHAR2(30),
+    DEPARTMENT VARCHAR2(20),
+    SALARY NUMBER(10,2)
+);
+
+-- Create audit table
+CREATE TABLE EMPLOYEE_AUDIT4
+(
+    AUDIT_ID NUMBER(4),
+    EMPLOYEE_ID NUMBER(4),
+    EMPLOYEE_NAME VARCHAR2(30),
+    DEPARTMENT VARCHAR2(20),
+    SALARY NUMBER(10,2),
+    ACTION_TYPE VARCHAR2(20)
+);
+
+-- Create AFTER INSERT trigger
+CREATE OR REPLACE TRIGGER TRG_AFTER_INSERT15
+AFTER INSERT ON EMPLOYEE16
+FOR EACH ROW
+BEGIN
+
+    INSERT INTO EMPLOYEE_AUDIT4
+    (
+        AUDIT_ID,
+        EMPLOYEE_ID,
+        EMPLOYEE_NAME,
+        DEPARTMENT,
+        SALARY,
+        ACTION_TYPE
+    )
+    VALUES
+    (
+        :NEW.EMPLOYEE_ID,
+        :NEW.EMPLOYEE_ID,
+        :NEW.EMPLOYEE_NAME,
+        :NEW.DEPARTMENT,
+        :NEW.SALARY,
+        'INSERT'
+    );
+
+    DBMS_OUTPUT.PUT_LINE(
+        'Employee record inserted and audit record created.'
+    );
+
+END;
+/
+
+-- Insert employee
+INSERT INTO EMPLOYEE16
+VALUES
+(
+    101,
+    'Rahul',
+    'HR',
+    35000
+);
+
+COMMIT;
+
+-- Display employee table
+SELECT * FROM EMPLOYEE16;
+
+-- Display audit table
+SELECT * FROM EMPLOYEE_AUDIT4;

@@ -1,0 +1,66 @@
+
+##EXPERIMENT STARTING
+#CREATING TABLE STUDENT
+CREATE TABLE student2(
+"name" VARCHAR(20),
+student_number NUMBER,
+class NUMBER,
+major VARCHAR(20)
+);
+![OUTPUT](EXP 1 OP STUDENT2)
+
+#CREATING TABLE COURSE
+CREATE TABLE course(
+course_name VARCHAR2(100),
+course_number VARCHAR2(50),
+credit_hours NUMBER,
+department VARCHAR2(10)
+);
+![OUTPUT](EXP 1 OP COURSE)
+
+#CREATING TABLE SECTION
+CREATE TABLE section(
+section_identifier NUMBER,
+course_number VARCHAR2(100),
+semester VARCHAR2(50),
+year NUMBER,
+instructor VARCHAR2(20)
+);
+![OUTPUT](EXP 1 OP SECTION]
+
+#CREATING TABLE GRADE_REPORT
+CREATE TABLE Grade_report2(
+student_number NUMBER,
+section_identifier NUMBER,
+grade VARCHAR2(5)
+);
+![OUTPUT](EXP 1 OP GRADE_REPORT]
+
+INSERT INTO student2
+VALUES('smith',17,1,'CS');
+SELECT *FROM student2;
+INSERT INTO student2
+VALUES('brown',8,2,'CS');
+SELECT * FROM student2;
+
+INSERT INTO course
+VALUES('intro to computer science','CS1310',4,'CS');
+SELECT *FROM course;
+INSERT INTO course
+VALUES('data structures','CS3320',4,'CS');
+SELECT *FROM course;
+
+INSERT INTO SECTION
+VALUES(85,'MATH2410','fall',2007,'king');
+SELECT * FROM SECTION;
+INSERT INTO SECTION
+VALUES(102,'CS1320','spring',2008,'knuth');
+SELECT * FROM SECTION;
+
+INSERT INTO GRADE_REPORT2
+VALUES(17,112,'B');
+SELECT * FROM GRADE_REPORT2;
+INSERT INTO GRADE_REPORT2
+VALUES(8,92,'A');
+SELECT * FROM GRADE_REPORT2;
+

@@ -1,0 +1,72 @@
+CREATE TABLE STUDENT_MARKS
+(
+    STUDENT_ID NUMBER(5) PRIMARY KEY,
+    STUDENT_NAME VARCHAR2(30),
+    COURSE VARCHAR2(20),
+    MARKS NUMBER(3)
+);
+
+INSERT INTO STUDENT_MARKS VALUES (101, 'Ravi', 'CSE', 85);
+INSERT INTO STUDENT_MARKS VALUES (102, 'Sita', 'CSE', 92);
+INSERT INTO STUDENT_MARKS VALUES (103, 'Kiran', 'ECE', 78);
+INSERT INTO STUDENT_MARKS VALUES (104, 'Anjali', 'EEE', 88);
+INSERT INTO STUDENT_MARKS VALUES (105, 'Rahul', 'CSE', 74);
+INSERT INTO STUDENT_MARKS VALUES (106, 'Priya', 'ECE', 95);
+INSERT INTO STUDENT_MARKS VALUES (107, 'Arun', 'IT', 81);
+INSERT INTO STUDENT_MARKS VALUES (108, 'Sneha', 'CSE', 89);
+INSERT INTO STUDENT_MARKS VALUES (109, 'Vijay', 'EEE', 68);
+INSERT INTO STUDENT_MARKS VALUES (110, 'Divya', 'IT', 91);
+
+COMMIT;
+
+SELECT * FROM STUDENT_MARKS;
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    e_no_first_class EXCEPTION;
+    v_count NUMBER;
+
+BEGIN
+    SELECT COUNT(*)
+    INTO v_count
+    FROM STUDENT_MARKS
+    WHERE MARKS >= 60;
+
+    IF v_count = 0 THEN
+        RAISE e_no_first_class;
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('First Class Students:');
+
+        FOR s IN
+        (
+            SELECT STUDENT_ID, STUDENT_NAME, COURSE, MARKS
+            FROM STUDENT_MARKS
+            WHERE MARKS >= 60
+        )
+        LOOP
+            DBMS_OUTPUT.PUT_LINE(
+                'ID: ' || s.STUDENT_ID ||
+                ', Name: ' || s.STUDENT_NAME ||
+                ', Course: ' || s.COURSE ||
+                ', Marks: ' || s.MARKS
+            );
+        END LOOP;
+    END IF;
+
+EXCEPTION
+    WHEN e_no_first_class THEN
+        DBMS_OUTPUT.PUT_LINE('No First Class Students Found!');
+
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END;
+/
+
+UPDATE STUDENT_MARKS
+SET MARKS = 59;
+
+COMMIT;
+
+SELECT * FROM STUDENT_MARKS;
+

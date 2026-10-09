@@ -1,2 +1,4 @@
 # II-CSE-E-SEC-DBMS-LAB
 DBMS LAB FOR AY 2026-27 I SEM
+## Experiments
+- Experiment 3 - SQL Operations
