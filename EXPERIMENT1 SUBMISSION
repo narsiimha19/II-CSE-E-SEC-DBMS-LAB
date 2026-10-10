@@ -1,0 +1,141 @@
+------STUDENT---
+CREATE TABLE STUDENT (
+    Student_Number NUMBER,
+    Name VARCHAR2(50),
+    Class NUMBER,
+    Major VARCHAR2(30)
+);
+INSERT INTO STUDENT VALUES (1, 'Ravi', 2, 'CSE');
+INSERT INTO STUDENT VALUES (2, 'Sai Teja', 2, 'CSE');
+INSERT INTO STUDENT VALUES (3, 'Kiran', 3, 'ECE');
+COMMIT;
+DESC STUDENT;
+SELECT TABLE_NAME
+FROM USER_TABLES;
+SELECT * FROM STUDENT;
+DROP TABLE STUDENT;
+
+OUTPUT:
+Table STUDENT created.
+1 row created.
+1 row created.
+1 row created.
+Name             Null?    TypeSTUDENT_NUMBER  NAME       CLASS  MAJOR
+--------------  ---------  -----  ------
+1               Ravi       2      CSE
+2               Sai Teja   2      CSE
+3               Kiran      3      ECE
+---------------- -------- ----------------
+STUDENT_NUMBER            NUMBER
+NAME                      VARCHAR2(50)
+CLASS                     NUMBER
+MAJOR                     VARCHAR2(30)
+Table STUDENT dropped.
+
+---------COURSE-----
+
+CREATE TABLE COURSE (
+    Course_Number VARCHAR2(10),
+    Course_Name VARCHAR2(50),
+    Credit_Hours NUMBER,
+    Department VARCHAR2(30)
+);
+INSERT INTO COURSE VALUES ('CS101', 'Database Systems', 4, 'CSE');
+INSERT INTO COURSE VALUES ('CS102', 'Data Structures', 4, 'CSE');
+INSERT INTO COURSE VALUES ('EC101', 'Digital Electronics', 3, 'ECE');
+COMMIT;
+DESC COURSE;
+SELECT TABLE_NAME
+FROM USER_TABLES;
+SELECT * FROM COURSE;
+DROP TABLE COURSE;
+
+OUTPUT:
+Table COURSE created.
+1 row created.
+1 row created.
+1 row created.
+Name             Null?    Type
+---------------- -------- ----------------
+COURSE_NUMBER             VARCHAR2(10)
+COURSE_NAME               VARCHAR2(50)
+CREDIT_HOURS              NUMBER
+DEPARTMENT                VARCHAR2(30)
+COURSE_NUMBER  COURSE_NAME          CREDIT_HOURS  DEPARTMENT
+-------------  -------------------  ------------  ----------
+CS101          Database Systems     4             CSE
+CS102          Data Structures      4             CSE
+EC101          Digital Electronics  3             ECE
+Table COURSE dropped.
+
+-----SECTION-----
+
+CREATE TABLE SECTION (
+    Section_Identifier NUMBER,
+    Course_Number VARCHAR2(10),
+    Semester VARCHAR2(20),
+    Year NUMBER,
+    Instructor VARCHAR2(50)
+);
+INSERT INTO SECTION VALUES (1, 'CS101', 'I Semester', 2026, 'Dr. Kumar');
+INSERT INTO SECTION VALUES (2, 'CS102', 'I Semester', 2026, 'Dr. Ramesh');
+INSERT INTO SECTION VALUES (3, 'EC101', 'I Semester', 2026, 'Dr. Priya');
+COMMIT;
+DESC SECTION;
+SELECT TABLE_NAME
+FROM USER_TABLES;
+SELECT * FROM SECTION;
+DROP TABLE SECTION;
+
+OUTPUT:
+Table SECTION created.
+1 row created.
+1 row created.
+1 row created.
+Name                  Null?    Type
+--------------------- -------- ----------------
+SECTION_IDENTIFIER             NUMBER
+COURSE_NUMBER                  VARCHAR2(10)
+SEMESTER                       VARCHAR2(20)
+YEAR                           NUMBER
+INSTRUCTOR                     VARCHAR2(50)
+SECTION_IDENTIFIER  COURSE_NUMBER  SEMESTER     YEAR  INSTRUCTOR
+------------------  -------------  -----------  ----  ----------
+1                   CS101          I Semester   2026  Dr. Kumar
+2                   CS102          I Semester   2026  Dr. Ramesh
+3                   EC101          I Semester   2026  Dr. Priya
+Table SECTION dropped.
+
+------GRADE REPORT---------
+
+CREATE TABLE GRADE_REPORT (
+    Student_Number NUMBER,
+    Section_Identifier NUMBER,
+    Grade VARCHAR2(5)
+);
+INSERT INTO GRADE_REPORT VALUES (1, 1, 'A');
+INSERT INTO GRADE_REPORT VALUES (2, 1, 'A+');
+INSERT INTO GRADE_REPORT VALUES (3, 3, 'B');
+COMMIT;
+DESC GRADE_REPORT;
+SELECT TABLE_NAME
+FROM USER_TABLES;
+SELECT * FROM GRADE_REPORT;
+DROP TABLE GRADE_REPORT;
+
+OUTPUT:
+Table GRADE_REPORT created.
+1 row created.
+1 row created.
+1 row created.
+Name                  Null?    Type
+--------------------- -------- ----------------
+STUDENT_NUMBER                 NUMBER
+SECTION_IDENTIFIER             NUMBER
+GRADE                          VARCHAR2(5)
+STUDENT_NUMBER  SECTION_IDENTIFIER  GRADE
+--------------  ------------------  -----
+1               1                   A
+2               1                   A+
+3               3                   B
+Table GRADE_REPORT dropped.
