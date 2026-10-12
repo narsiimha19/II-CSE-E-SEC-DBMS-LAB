@@ -1,0 +1,211 @@
+# EXPERIMENT-4
+
+# Q1: Create DEPT table
+```
+CREATE TABLE DEPT
+(
+    DNO NUMBER,
+    DNAME VARCHAR2(30)
+);
+```
+![Output a](outputs/1.png)
+
+# Q2: Apply Primary Key on DNO and NOT NULL on DNAME
+```
+ALTER TABLE DEPT
+ADD CONSTRAINT DEPT_PK PRIMARY KEY (DNO);
+
+ALTER TABLE DEPT
+MODIFY DNAME NOT NULL;
+```
+![output b](outputs/2.png)
+
+# Q3: Create STUDENT table
+```
+CREATE TABLE STUDENT
+(
+    SID NUMBER,
+    SNAME VARCHAR2(30),
+    DID NUMBER
+);
+```
+
+![output c](outputs/3.png)
+
+# Q4: Apply Primary Key, NOT NULL and Foreign Key constraints
+```
+ALTER TABLE STUDENT
+ADD CONSTRAINT STUDENT_PK PRIMARY KEY (SID);
+
+ALTER TABLE STUDENT
+MODIFY SNAME NOT NULL;
+
+ALTER TABLE STUDENT
+ADD CONSTRAINT STUDENT_FK
+FOREIGN KEY (DID) REFERENCES DEPT(DNO);
+```
+![output d](outputs/4.png)
+
+# Q5: Insert department details
+```
+INSERT INTO DEPT VALUES (10, 'CSE');
+INSERT INTO DEPT VALUES (20, 'ME');
+INSERT INTO DEPT VALUES (30, 'CE');
+INSERT INTO DEPT VALUES (40, 'EEE');
+INSERT INTO DEPT VALUES (50, 'ECE');
+INSERT INTO DEPT VALUES (60, 'CSM');
+INSERT INTO DEPT VALUES (70, 'CSD');
+
+COMMIT;
+```
+![output e](outputs/5.png)
+
+# Q6: Insert student details
+```
+INSERT INTO STUDENT VALUES (101, 'Rahul', 10);
+INSERT INTO STUDENT VALUES (102, 'Sneha', 20);
+INSERT INTO STUDENT VALUES (103, 'Arjun', 30);
+INSERT INTO STUDENT VALUES (104, 'Kiran', 40);
+INSERT INTO STUDENT VALUES (105, 'Priya', 50);
+INSERT INTO STUDENT VALUES (106, 'Nikhil', 10);
+INSERT INTO STUDENT VALUES (107, 'Anjali', 60);
+INSERT INTO STUDENT VALUES (108, 'Ravi', 30);
+INSERT INTO STUDENT VALUES (109, 'Ayesha', 70);
+INSERT INTO STUDENT VALUES (110, 'Vijay', NULL);
+
+COMMIT;
+```
+![output f](outputs/6.png)
+
+# Q7: NATURAL JOIN Student and Dept
+```
+SELECT *
+FROM STUDENT
+NATURAL JOIN
+(
+    SELECT DNO AS DID, DNAME
+    FROM DEPT
+);
+
+```
+![output g](outputs/7.png)
+
+# Q8: EQUI JOIN Student and Dept
+```
+SELECT S.SID, S.SNAME, D.DNO, D.DNAME
+FROM STUDENT S
+INNER JOIN DEPT D
+ON S.DID = D.DNO;
+```
+![output h](outputs/8.png)
+
+# Q9: CONDITIONAL JOIN Student and Dept
+```
+SELECT S.SID, S.SNAME, D.DNO, D.DNAME
+FROM STUDENT S
+JOIN DEPT D
+ON S.DID > D.DNO;
+```
+![output i](outputs/9.png)
+
+# Q10: LEFT OUTER NATURAL JOIN Student and Dept
+```
+SELECT S.SID, S.SNAME, S.DID, D.DNAME
+FROM STUDENT S
+LEFT OUTER JOIN
+(
+    SELECT DNO AS DID, DNAME
+    FROM DEPT
+) D
+ON S.DID = D.DID;
+```
+![output j](outputs/10.png)
+
+# Q11: RIGHT OUTER NATURAL JOIN Student and Dept
+```
+SELECT S.SID, S.SNAME, S.DID, D.DNAME
+FROM STUDENT S
+RIGHT OUTER JOIN
+(
+    SELECT DNO AS DID, DNAME
+    FROM DEPT
+) D
+ON S.DID = D.DID;
+```
+![output k](outputs/11.png)
+
+# Q12: FULL OUTER NATURAL JOIN Student and Dept
+```
+SELECT S.SID, S.SNAME, S.DID, D.DNAME
+FROM STUDENT S
+FULL OUTER JOIN
+(
+    SELECT DNO AS DID, DNAME
+    FROM DEPT
+) D
+ON S.DID = D.DID;
+
+```
+![output l](outputs/12.png)
+
+# Q13: LEFT OUTER EQUI JOIN Student and Dept
+```
+SELECT S.SID, S.SNAME, D.DNO, D.DNAME
+FROM STUDENT S
+LEFT OUTER JOIN DEPT D
+ON S.DID = D.DNO;
+```
+![output m](outputs/13.png)
+
+# Q14: RIGHT OUTER EQUI JOIN Student and Dept
+```
+SELECT S.SID, S.SNAME, D.DNO, D.DNAME
+FROM STUDENT S
+RIGHT OUTER JOIN DEPT D
+ON S.DID = D.DNO;
+```
+![output n](outputs/14.png)
+
+# Q15: FULL OUTER EQUI JOIN Student and Dept
+```
+SELECT S.SID, S.SNAME, D.DNO, D.DNAME
+FROM STUDENT S
+FULL OUTER JOIN DEPT D
+ON S.DID = D.DNO;
+```
+![output o](outputs/15.png)
+
+# Q16: LEFT OUTER CONDITIONAL JOIN Student and Dept
+```
+SELECT S.SID, S.SNAME, D.DNO, D.DNAME
+FROM STUDENT S
+LEFT OUTER JOIN DEPT D
+ON S.DID > D.DNO;
+```
+![output p](outputs/16.png)
+
+# Q17: RIGHT OUTER CONDITIONAL JOIN Student and Dept
+```
+SELECT S.SID, S.SNAME, D.DNO, D.DNAME
+FROM STUDENT S
+RIGHT OUTER JOIN DEPT D
+ON S.DID > D.DNO;
+```
+![output q](outputs/17.png)
+
+# Q18: FULL OUTER CONDITIONAL JOIN Student and Dept
+```
+SELECT S.SID, S.SNAME, D.DNO, D.DNAME
+FROM STUDENT S
+FULL OUTER JOIN DEPT D
+ON S.DID > D.DNO;
+```
+![output r](outputs/18.png)
+
+# Q19: CROSS JOIN Student and Dept
+```
+SELECT S.SID, S.SNAME, D.DNO, D.DNAME
+FROM STUDENT S
+CROSS JOIN DEPT D;
+```
+![output s](outputs/19.png)
