@@ -1,0 +1,319 @@
+
+# WEEK-3 DBMSLAB
+
+# Employee table creation
+
+```
+CREATE TABLE EMPLOYEE
+(
+    EMPLOYEE_ID NUMBER(4) PRIMARY KEY,
+    FIRST_NAME VARCHAR2(20),
+    LAST_NAME VARCHAR2(20),
+    GENDER CHAR(1),
+    JOB_ID VARCHAR2(15),
+    DEPARTMENT VARCHAR2(20),
+    SALARY NUMBER(8),
+    COMMISSION NUMBER(5),
+    HIRE_DATE DATE,
+    CITY VARCHAR2(20)
+);
+```
+![output 1](output-week3a/create-emp.jpeg)
+
+# Inserting values
+
+```
+INSERT INTO EMPLOYEE
+VALUES (101, 'John', 'Smith', 'M', 'IT_PROG', 'IT', 65000, 5,
+        TO_DATE('15-JAN-2020','DD-MON-YYYY'), 'Hyderabad');
+
+INSERT INTO EMPLOYEE
+VALUES (102, 'Anita', 'Sharma', 'F', 'HR_REP', 'HR', 52000, 3,
+        TO_DATE('10-JUN-2019','DD-MON-YYYY'), 'Bengaluru');
+
+INSERT INTO EMPLOYEE
+VALUES (103, 'Rahul', 'Kumar', 'M', 'SA_REP', 'Sales', 48000, 8,
+        TO_DATE('25-AUG-2021','DD-MON-YYYY'), 'Chennai');
+
+INSERT INTO EMPLOYEE
+VALUES (104, 'Priya', 'Reddy', 'F', 'MK_MAN', 'Marketing', 72000, 10,
+        TO_DATE('05-MAR-2018','DD-MON-YYYY'), 'Hyderabad');
+
+INSERT INTO EMPLOYEE
+VALUES (105, 'David', 'Wilson', 'M', 'FI_ACCOUNT', 'Finance', 58000, NULL,
+        TO_DATE('18-DEC-2017','DD-MON-YYYY'), 'Mumbai');
+
+INSERT INTO EMPLOYEE
+VALUES (106, 'Sneha', 'Patel', 'F', 'IT_PROG', 'IT', 69000, 6,
+        TO_DATE('12-NOV-2022','DD-MON-YYYY'), 'Pune');
+
+INSERT INTO EMPLOYEE
+VALUES (107, 'Amit', 'Verma', 'M', 'SA_REP', 'Sales', 45000, 4,
+        TO_DATE('20-JUL-2023','DD-MON-YYYY'), 'Delhi');
+
+INSERT INTO EMPLOYEE
+VALUES (108, 'Kiran', 'Rao', 'M', 'HR_REP', 'HR', 50000, NULL,
+        TO_DATE('09-FEB-2021','DD-MON-YYYY'), 'Hyderabad');
+
+INSERT INTO EMPLOYEE
+VALUES (109, 'Lakshmi', 'Nair', 'F', 'IT_PROG', 'IT', 76000, 7,
+        TO_DATE('14-SEP-2016','DD-MON-YYYY'), 'Kochi');
+
+INSERT INTO EMPLOYEE
+VALUES (110, 'Arjun', 'Singh', 'M', 'MK_MAN', 'Marketing', 68000, 5,
+        TO_DATE('30-APR-2019','DD-MON-YYYY'), 'Jaipur');
+
+```
+![output 2](output-week3a/insert-emp.jpeg)
+
+# Describing the table 
+
+```      	 
+SELECT * FROM EMPLOYEE;
+```
+![output 1](output-week3a/select-emp.jpeg)
+
+# q1
+```
+SELECT EMPLOYEE_ID, FIRST_NAME,
+       TO_CHAR(HIRE_DATE, 'DD-MON-YYYY') AS HIRE_DATE
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q1.jpeg)
+
+# q2
+```
+SELECT EMPLOYEE_ID, FIRST_NAME,
+       TO_CHAR(SALARY, 'L99,999,999') AS SALARY
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q2.jpeg)
+
+# q3
+```
+SELECT EMPLOYEE_ID, FIRST_NAME,
+       TO_NUMBER(SALARY) + 5000 AS NEW_SALARY
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q3.jpeg)
+
+# q4
+```
+SELECT *
+FROM EMPLOYEE
+WHERE HIRE_DATE > TO_DATE('01-JAN-2020', 'DD-MON-YYYY');
+```
+
+![output 1](output-week3a/q4.jpeg)
+
+
+# q5
+```
+SELECT EMPLOYEE_ID,
+       FIRST_NAME || ' ' || LAST_NAME AS FULL_NAME
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q5.jpeg)
+
+
+# q6
+```
+SELECT EMPLOYEE_ID,
+       CONCAT(FIRST_NAME, CONCAT(' ', LAST_NAME)) AS FULL_NAME
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q6.jpeg)
+
+
+
+# q7
+```
+SELECT FIRST_NAME,
+       LPAD(FIRST_NAME, 10, '*') AS PADDED_NAME
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q7.jpeg)
+
+# q8
+```
+SELECT FIRST_NAME,
+       RPAD(FIRST_NAME, 10, '*') AS PADDED_NAME
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q8.jpeg)
+
+
+# q9
+```
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q9.jpeg)
+
+
+
+
+# q10
+```
+FROM EMPLOYEE;
+```
+
+![output 1](output-week3a/q10.jpeg)
+
+# q11
+```
+SELECT FIRST_NAME,
+       LOWER(FIRST_NAME) AS LOWERCASE_NAME
+FROM EMPLOYEE;
+```
+
+![output 1](output-week3a/q11.jpeg)
+
+
+# q12
+```
+SELECT FIRST_NAME,
+       UPPER(FIRST_NAME) AS UPPERCASE_NAME
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q12.jpeg)
+
+
+
+
+# q15
+```
+SELECT FIRST_NAME,
+       SUBSTR(FIRST_NAME, 1, 3) AS FIRST_THREE
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q15.jpeg)
+
+
+# q16
+```
+SELECT FIRST_NAME,
+       INSTR(LOWER(FIRST_NAME), 'a') AS POSITION_OF_A
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q16.jpeg)
+
+
+# q17
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME,
+       HIRE_DATE, SYSDATE AS CURRENT_DATE
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q17.jpeg)
+
+# q18
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE,
+       NEXT_DAY(HIRE_DATE, 'MONDAY') AS NEXT_MONDAY
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q18.jpeg)
+
+
+
+# q19
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE,
+       ADD_MONTHS(HIRE_DATE, 6) AS AFTER_SIX_MONTHS
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q19.jpeg)
+
+
+# q20
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE,
+       LAST_DAY(HIRE_DATE) AS LAST_DAY_OF_MONTH
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q20.jpeg)
+
+
+
+# q21
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE,
+       ROUND(MONTHS_BETWEEN(SYSDATE, HIRE_DATE), 2) AS MONTHS_WORKED
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q21.jpeg)
+
+
+# q22
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, SALARY,
+       LEAST(SALARY, 60000) AS SMALLER_VALUE
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q22.jpeg)
+
+
+# q23
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, SALARY,
+       GREATEST(SALARY, 60000) AS GREATER_VALUE
+FROM EMPLOYEE;
+```
+
+![output 1](output-week3a/q23.jpeg)
+
+
+
+# q24
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE,
+       TRUNC(HIRE_DATE, 'MONTH') AS FIRST_DAY_OF_MONTH
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q24.jpeg)
+
+
+# q25
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE,
+       ROUND(HIRE_DATE, 'MONTH') AS ROUNDED_DATE
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q25.jpeg)
+
+
+
+
+
+# q26
+```
+SELECT EMPLOYEE_ID, FIRST_NAME,
+       TO_CHAR(HIRE_DATE, 'DAY, DD-MON-YYYY') AS FORMATTED_DATE
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q26.jpeg)
+
+
+# q27
+```
+SELECT *
+FROM EMPLOYEE
+WHERE HIRE_DATE < TO_DATE('01-JAN-2019', 'DD-MON-YYYY');
+SELECT * FROM EMPLOYEE;
+```
+![output 1](output-week3a/q27.jpeg)
+
+# q13
+```
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q13.jpeg)
+SELECT FIRST_NAME,
+       LENGTH(FIRST_NAME) AS NAME_LENGTH
+SELECT FIRST_NAME,
+       INITCAP(FIRST_NAME) AS PROPER_NAME
+# q14
+```
+FROM EMPLOYEE;
+```
+![output 1](output-week3a/q14.jpeg)
