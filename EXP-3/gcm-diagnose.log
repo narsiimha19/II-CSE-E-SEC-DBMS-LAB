@@ -1,0 +1,214 @@
+﻿Diagnose log at 2026-10-13T13:39:21Z
+
+AppPath: C:\Program Files\Git\mingw64\bin\git-credential-manager.exe
+InstallDir: C:\Program Files\Git\mingw64\bin\
+Version: 2.8.0+d5e8a3442d48cc5efe7014e093e44242c0bd395f
+
+------------
+Diagnostic: Environment
+Skipped: False
+Success: True
+Exception: None
+Log:
+OSType: Windows
+OSVersion: 10.0 (build 26200)
+Reading environment variables... OK
+ Variables:
+ORIGINAL_TMP=C:/Users/haris/AppData/Local/Temp
+ProgramFiles(x86)=C:\Program Files (x86)
+MSYSTEM=MINGW64
+ProgramW6432=C:\Program Files
+EXEPATH=C:\Program Files\Git
+ChocolateyInstall=C:\ProgramData\chocolatey
+ORIGINAL_PATH=C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\haris\bin;C:\app\haris\product\21c\dbhomeXE\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files\MongoDB\Server\8.3\bin;C:\Program Files\Git\cmd;C:\Users\haris\AppData\Local\Programs\Python\Python314\Scripts;C:\Users\haris\AppData\Local\Programs\Python\Python314;C:\Users\haris\.local\bin;C:\Users\haris\AppData\Local\Microsoft\WindowsApps;C:\Users\haris\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\haris\AppData\Roaming\npm;C:\Users\haris\AppData\Local\Kingsoft\WPS Office\12.1.0.27458\clitool;C:\Program Files\JetBrains\PyCharm 2026.1.4\bin
+PKG_CONFIG_SYSTEM_LIBRARY_PATH=C:/Program Files/Git/mingw64/lib
+APPDATA=C:\Users\haris\AppData\Roaming
+TMP=C:\Users\haris\AppData\Local\Temp
+PROCESSOR_ARCHITECTURE=AMD64
+INFOPATH=C:\Program Files\Git\mingw64\local\info;C:\Program Files\Git\mingw64\share\info;C:\Program Files\Git\usr\local\info;C:\Program Files\Git\usr\share\info;C:\Program Files\Git\usr\info;C:\Program Files\Git\share\info
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+PyCharm=C:\Program Files\JetBrains\PyCharm 2026.1.4\bin
+ProgramData=C:\ProgramData
+PWD=C:/Users/haris/OneDrive/Desktop/II-CSE-E-SEC-DBMS-LAB/EXP-3
+CONFIG_SITE=C:/Program Files/Git/etc/config.site
+PROCESSOR_REVISION=ba03
+OLDPWD=C:/Users/haris/OneDrive/Desktop/II-CSE-E-SEC-DBMS-LAB
+TEMP=C:\Users\haris\AppData\Local\Temp
+USERPROFILE=C:\Users\haris
+GIT_TRACE2_PARENT_SID=338b4a20-2473-417d-8f38-cd17854a26bf
+LOGONSERVER=\\DELL
+TERM=xterm-256color
+USERNAME=haris
+EFC_22816_2283032206=1
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 186 Stepping 3, GenuineIntel
+GIT_EXEC_PATH=C:/Program Files/Git/mingw64/libexec/git-core
+PLINK_PROTOCOL=ssh
+COMMONPROGRAMFILES=C:\Program Files\Common Files
+_=C:/Program Files/Git/mingw64/bin/git
+PATH=C:/Program Files/Git/mingw64/libexec/git-core;C:\Users\haris\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\haris\bin;C:\app\haris\product\21c\dbhomeXE\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files\MongoDB\Server\8.3\bin;C:\Program Files\Git\cmd;C:\Users\haris\AppData\Local\Programs\Python\Python314\Scripts;C:\Users\haris\AppData\Local\Programs\Python\Python314;C:\Users\haris\.local\bin;C:\Users\haris\AppData\Local\Microsoft\WindowsApps;C:\Users\haris\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\haris\AppData\Roaming\npm;C:\Users\haris\AppData\Local\Kingsoft\WPS Office\12.1.0.27458\clitool;C:\Program Files\JetBrains\PyCharm 2026.1.4\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+OneDrive=C:\Users\haris\OneDrive
+MSYSTEM_CARCH=x86_64
+IGCCSVC_DB=AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAM22+W9ZeHE+AG6icpuoDwQQAAAACAAAAAAAQZgAAAAEAACAAAAAGsj3ol33hv/MITb+3+L0nM32Oi+TugnOqWDdY5fc6xAAAAAAOgAAAAAIAACAAAACw35VFKoSk5H9xlHe2LAi4nT9p6lamjB+SUv6HOKT/IWAAAAC7hC/+xnGUQ7NZzA6xWXnGAI1chTcchVhR43MqZx660mcuMg0F6oO1pUL+atjSKXTHGw3H1rxfgWEXvu9A4d076c48d4Es/BDMWftHfxGwlR+2kf3haRw4aY7ayrcDsHNAAAAAJGs7BC4ASB2yjcmhNAslbiJniJGvCeiobqjnnD9/RnQd7VrWhIA8J2Gk52PPQV3epw59SDHl3cNCu22+GhkVJA==
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+ZES_ENABLE_SYSMAN=1
+PKG_CONFIG_SYSTEM_INCLUDE_PATH=C:/Program Files/Git/mingw64/include
+PROCESSOR_LEVEL=6
+MINGW_CHOST=x86_64-w64-mingw32
+HOSTNAME=Dell
+HOMEPATH=\Users\haris
+DISPLAY=needs-to-be-defined
+EFC_22816_1262719628=1
+MANPATH=C:\Program Files\Git\mingw64\local\man;C:\Program Files\Git\mingw64\share\man;C:\Program Files\Git\usr\local\man;C:\Program Files\Git\usr\share\man;C:\Program Files\Git\usr\man;C:\Program Files\Git\share\man
+WINDIR=C:\WINDOWS
+USERDOMAIN=DELL
+ChocolateyLastPathUpdate=134217416279600195
+CommonProgramW6432=C:\Program Files\Common Files
+SYSTEMROOT=C:\WINDOWS
+EFC_22816_1592913036=1
+SHELL=C:\Program Files\Git\usr\bin\bash.exe
+PROGRAMFILES=C:\Program Files
+SHLVL=1
+SESSIONNAME=Console
+DriverData=C:\Windows\System32\Drivers\DriverData
+HOMEDRIVE=C:
+EFC_22816_3789132940=1
+ACLOCAL_PATH=C:\Program Files\Git\mingw64\share\aclocal;C:\Program Files\Git\usr\share\aclocal
+NUMBER_OF_PROCESSORS=12
+OS=Windows_NT
+MSYSTEM_PREFIX=C:/Program Files/Git/mingw64
+WPSCLI_HOME=C:\Users\haris\AppData\Local\Kingsoft\WPS Office\12.1.0.27458\clitool
+MSYSTEM_CHOST=x86_64-w64-mingw32
+MINGW_PREFIX=C:/Program Files/Git/mingw64
+ORIGINAL_TEMP=C:/Users/haris/AppData/Local/Temp
+HOME=C:\Users\haris
+ALLUSERSPROFILE=C:\ProgramData
+EFC_22816_4126798990=1
+PSModulePath=C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+TMPDIR=C:\Users\haris\AppData\Local\Temp
+MINGW_PACKAGE_PREFIX=mingw-w64-x86_64
+PS1=\[\033]0;$TITLEPREFIX:$PWD\007\]\n\[\033[32m\]\u@\h \[\033[35m\]$MSYSTEM \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]\n$ 
+COMPUTERNAME=DELL
+LC_CTYPE=en_US.UTF-8
+SSH_ASKPASS=C:/Program Files/Git/mingw64/bin/git-askpass.exe
+LOCALAPPDATA=C:\Users\haris\AppData\Local
+SYSTEMDRIVE=C:
+COMSPEC=C:\WINDOWS\system32\cmd.exe
+EFC_22816_2775293581=1
+PKG_CONFIG_PATH=C:\Program Files\Git\mingw64\lib\pkgconfig;C:\Program Files\Git\mingw64\share\pkgconfig
+TERM_PROGRAM_VERSION=3.8.3
+USERDOMAIN_ROAMINGPROFILE=DELL
+OneDriveConsumer=C:\Users\haris\OneDrive
+PUBLIC=C:\Users\Public
+TERM_PROGRAM=mintty
+
+
+------------
+Diagnostic: File system
+Skipped: False
+Success: True
+Exception: None
+Log:
+Temporary directory is 'C:\Users\haris\AppData\Local\Temp\'...
+Checking basic file I/O...
+Writing to temporary file 'C:\Users\haris\AppData\Local\Temp\87a9446990df19b943d8ea55'... OK
+Reading from temporary file 'C:\Users\haris\AppData\Local\Temp\87a9446990df19b943d8ea55'... OK
+Deleting temporary file 'C:\Users\haris\AppData\Local\Temp\87a9446990df19b943d8ea55'... OK
+Testing IFileSystem instance...
+UserHomePath: C:\Users\haris
+UserDataDirectoryPath: C:\Users\haris\.gcm
+GetCurrentDirectory(): C:\Users\haris\OneDrive\Desktop\II-CSE-E-SEC-DBMS-LAB\EXP-3
+
+------------
+Diagnostic: Networking
+Skipped: False
+Success: True
+Exception: None
+Log:
+Checking networking and HTTP stack...
+Creating HTTP client... OK
+IsNetworkAvailable: True
+Sending HEAD request to http://example.com... OK
+Sending HEAD request to https://example.com... OK
+Acquiring free TCP port... OK
+Testing local HTTP loopback connections...
+Creating new HTTP listener for http://localhost:60587/... OK
+Waiting for loopback connection... OK
+Writing response... OK
+Waiting for response data... OK
+Loopback connection data OK
+
+------------
+Diagnostic: Git
+Skipped: False
+Success: True
+Exception: None
+Log:
+Getting Git version... OK
+Git version is '2.55.0.windows.2'
+Locating current repository...Git repository at 'C:/Users/haris/OneDrive/Desktop/II-CSE-E-SEC-DBMS-LAB/.git'
+ OK
+Listing all Git configuration... OK
+Git configuration:
+file:C:/Program Files/Git/etc/gitconfig	diff.astextplain.textconv=astextplain
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.required=true
+file:C:/Program Files/Git/etc/gitconfig	http.sslbackend=schannel
+file:C:/Program Files/Git/etc/gitconfig	core.autocrlf=true
+file:C:/Program Files/Git/etc/gitconfig	core.fscache=true
+file:C:/Program Files/Git/etc/gitconfig	core.symlinks=false
+file:C:/Program Files/Git/etc/gitconfig	pull.rebase=false
+file:C:/Program Files/Git/etc/gitconfig	credential.helper=manager
+file:C:/Program Files/Git/etc/gitconfig	credential.https://dev.azure.com.usehttppath=true
+file:C:/Program Files/Git/etc/gitconfig	init.defaultbranch=master
+file:C:/Users/haris/.gitconfig	user.name=saritha
+file:C:/Users/haris/.gitconfig	user.email=254g1a05v0@srit.ac.in
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=false
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.symlinks=false
+file:.git/config	core.ignorecase=true
+file:.git/config	remote.origin.url=https://github.com/narsiimha19/II-CSE-E-SEC-DBMS-LAB.git
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+file:.git/config	branch.master.remote=origin
+file:.git/config	branch.master.merge=refs/heads/master
+file:.git/config	branch.master.vscode-merge-base=origin/master
+
+
+------------
+Diagnostic: Credential storage
+Skipped: False
+Success: True
+Exception: None
+Log:
+ICredentialStore instance is of type: CredentialStore
+Writing test credential... OK
+Reading test credential... OK
+Deleting test credential... OK
+
+------------
+Diagnostic: Microsoft authentication (AAD/MSA)
+Skipped: False
+Success: True
+Exception: None
+Log:
+Broker is not enabled.
+Flow type is: Auto
+Gathering MSAL token cache data... OK
+CacheDirectory: C:\Users\haris\AppData\Local\.IdentityService
+CacheFileName: msal.cache
+CacheFilePath: C:\Users\haris\AppData\Local\.IdentityService\msal.cache
+Creating cache helper... OK
+Verifying MSAL token cache persistence... OK
+
+------------
+Diagnostic: GitHub API
+Skipped: False
+Success: True
+Exception: None
+Log:
+Using 'https://github.com/' as API target.
+Querying '/meta' endpoint... OK
+
