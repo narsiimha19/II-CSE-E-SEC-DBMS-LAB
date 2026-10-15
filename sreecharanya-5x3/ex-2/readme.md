@@ -1,0 +1,420 @@
+#2a) Queries (along with sub-Queries) using ANY, ALL, IN, EXISTS, NOTEXISTS,UNION, INTERSET, Constraints.
+#2.b) Queries using Aggregate functions (COUNT, SUM, AVG, MAX and MIN),GROUP BY, HAVING.
+```CREATE TABLE Sailors (
+    sid NUMBER PRIMARY KEY,
+    sname VARCHAR2(50) NOT NULL,
+    rating NUMBER NOT NULL,
+    age NUMBER(4,1) NOT NULL
+);
+
+CREATE TABLE Boats (
+ bid NUMBER PRIMARY KEY,
+ bname VARCHAR2(20) NOT NULL,
+ color VARCHAR2(10) NOT NULL
+);
+
+CREATE TABLE Reserves (
+    sid NUMBER NOT NULL,
+    bid NUMBER NOT NULL,
+    day DATE NOT NULL,
+    PRIMARY KEY (sid, bid, day),
+    FOREIGN KEY (sid) REFERENCES Sailors(sid),
+    FOREIGN KEY (bid) REFERENCES Boats(bid)
+);
+
+INSERT INTO Boats
+VALUES(22,'Dustin',7,45.0);
+
+INSERT INTO Sailors VALUES (22, 'Dustin', 7, 45.0);
+INSERT INTO Sailors VALUES (29, 'Brutus', 1, 33.0);
+INSERT INTO Sailors VALUES (31, 'Lubber', 8, 55.5);
+INSERT INTO Sailors VALUES (32, 'Andy', 8, 25.5);
+INSERT INTO Sailors VALUES (58, 'Rusty', 10, 35.0);
+INSERT INTO Sailors VALUES (64, 'Horatio', 7, 35.0);
+INSERT INTO Sailors VALUES (71, 'Zorba', 10, 16.0);
+INSERT INTO Sailors VALUES (74, 'Horatio', 9, 35.0);
+INSERT INTO Sailors VALUES (85, 'Art', 3, 25.5);
+INSERT INTO Sailors VALUES (95, 'Bob', 3, 63.5);
+
+
+
+INSERT INTO Reserves VALUES (22, 101, TO_DATE('10/10/98','MM/DD/RR'));
+INSERT INTO Reserves VALUES (22, 102, TO_DATE('10/10/98','MM/DD/RR'));
+INSERT INTO Reserves VALUES (22, 103, TO_DATE('10/8/98','MM/DD/RR'));
+INSERT INTO Reserves VALUES (22, 104, TO_DATE('10/7/98','MM/DD/RR'));
+INSERT INTO Reserves VALUES (31, 102, TO_DATE('11/10/98','MM/DD/RR'));
+INSERT INTO Reserves VALUES (31, 103, TO_DATE('11/6/98','MM/DD/RR'));
+INSERT INTO Reserves VALUES (31, 104, TO_DATE('11/12/98','MM/DD/RR'));
+INSERT INTO Reserves VALUES (31, 104, TO_DATE('11/12/98','MM/DD/RR'));
+INSERT INTO Reserves VALUES (64, 101, TO_DATE('9/5/98','MM/DD/RR'));
+INSERT INTO Reserves VALUES (64, 102, TO_DATE('9/8/98','MM/DD/RR'));
+INSERT INTO Reserves VALUES (74, 103, TO_DATE('9/8/98','MM/DD/RR'));
+
+
+INSERT INTO Boats VALUES (101, 'Interlake', 'blue');
+INSERT INTO Boats VALUES (102, 'Interlake', 'red');
+INSERT INTO Boats VALUES (103, 'Clipper', 'green');
+INSERT INTO Boats VALUES (104, 'Marine', 'red');
+
+DESC sailors;
+
+DESC reserves;
+
+DESC boats;
+
+SELECT * FROM Sailors;
+
+SELECT * FROM Reserves;
+
+SELECT * FROM Boats;
+
+
+SELECT sname,age FROM Sailors;
+
+SELECT sname FROM Sailors WHERE rating>7;
+
+SELECT s.sname FROM Sailors s,Reserves r
+WHERE s.sid=r.sid
+AND r.bid=103;
+
+SELECT DISTINCT r.sid
+FROM Reserves r,Boats b
+WHERE r.bid=b.bid
+AND b.color='red';
+
+SELECT  DISTINCT s.sname FROM Sailors s,Reserves r,Boats b
+WHERE s.sid=r.sid
+AND r.bid=b.bid
+AND b.color='red';
+
+SELECT b.color FROM Sailors s,Reserves r,Boats b
+WHERE s.sid=r.sid
+AND r.bid=b.bid
+AND s.sname='Lubber';
+
+SELECT DISTINCT s.sname FROM Sailors s,Reserves r
+WHERE s.sid=r.sid;
+
+SELECT DISTINCT s.sname,rating+1 AS incremented_rating
+FROM Sailors s,Reserves r1,Reserves r2
+WHERE s.sid=r1.sid AND r1.sid=r2.sid
+AND r2.day=r2.day AND r1.bid < > r2.bid;
+
+
+SELECT age
+FROM Sailors
+WHERE sname LIKE 'B%b'
+AND LENGTH(sname) >= 3;
+
+SELECT s.sname FROM Sailors s,Reserves r,Boats b
+WHERE s.sid=r.sid
+AND r.bid=b.bid
+AND(b.color='red' OR b.color='green');
+
+SELECT s.sname
+FROM Sailors s
+WHERE s.sid IN
+(
+    SELECT r.sid
+    FROM Reserves r, Boats b
+    WHERE r.bid = b.bid
+    AND b.color = 'red'
+)
+AND s.sid IN
+(
+    SELECT r.sid
+    FROM Reserves r, Boats b
+    WHERE r.bid = b.bid
+    AND b.color = 'green'
+);
+
+
+SELECT DISTINCT r.sid
+FROM Reserves r, Boats b
+WHERE r.bid = b.bid
+AND b.color = 'red'
+AND r.sid NOT IN
+(
+    SELECT r2.sid
+    FROM Reserves r2, Boats b2
+    WHERE r2.bid = b2.bid
+    AND b2.color = 'green'
+);
+
+
+SELECT sid
+FROM Sailors
+WHERE rating = 10
+
+UNION
+
+SELECT sid
+FROM Reserves
+WHERE bid = 104;
+
+
+SELECT DISTINCT s.sname
+FROM Sailors s, Reserves r
+WHERE s.sid = r.sid
+AND r.bid = 103;
+
+
+SELECT DISTINCT s.sname
+FROM Sailors s, Reserves r, Boats b
+WHERE s.sid = r.sid
+AND r.bid = b.bid
+AND b.color = 'red';
+
+
+SELECT DISTINCT s.sname
+FROM Sailors s, Reserves r
+WHERE s.sid = r.sid
+AND r.bid = 103;
+
+
+SELECT *
+FROM Sailors
+WHERE rating > ANY
+(
+    SELECT rating
+    FROM Sailors
+    WHERE sname = 'Horatio'
+);
+
+
+SELECT * FROM Sailors
+WHERE rating > ALL
+(
+    SELECT rating
+    FROM Sailors
+    WHERE sname = 'Horatio'
+);
+
+
+
+
+
+SELECT * FROM Sailors
+
+WHERE rating =
+(
+
+    SELECT MAX(rating)
+
+    FROM Sailors
+
+);
+
+
+
+SELECT s.sname
+
+FROM Sailors s
+WHERE s.sid IN
+
+(
+
+    SELECT r.sid
+
+    FROM Reserves r, Boats b
+
+    WHERE r.bid = b.bid
+    AND b.color = 'red'
+
+)
+AND s.sid IN
+
+(
+
+    SELECT r.sid
+    FROM Reserves r, Boats b
+    WHERE r.bid = b.bid
+    AND b.color = 'green'
+);
+
+SELECT s.sname FROM Sailors s
+WHERE NOT EXISTS
+(
+    SELECT * FROM Boats b
+    WHERE NOT EXISTS
+    (
+        SELECT *
+        FROM Reserves r
+        WHERE r.sid = s.sid
+        AND r.bid = b.bid
+    )
+);
+
+
+
+SELECT AVG(age)
+FROM Sailors;
+
+
+SELECT AVG(age)
+FROM Sailors
+WHERE rating = 10;
+
+
+
+SELECT sname, age
+FROM Sailors
+WHERE age =
+(
+    SELECT MAX(age)
+    FROM Sailors
+);
+
+
+
+SELECT COUNT(*)
+FROM Sailors;
+
+
+
+SELECT COUNT(DISTINCT sname)
+FROM Sailors;
+
+
+
+SELECT sname
+FROM Sailors
+WHERE age >
+(
+    SELECT MAX(age)
+    FROM Sailors
+    WHERE rating = 10
+);
+
+
+
+SELECT rating, MIN(age)
+FROM Sailors
+GROUP BY rating;
+
+
+
+
+SELECT rating, MIN(age)
+FROM Sailors
+WHERE age >= 18
+
+GROUP BY rating
+
+HAVING COUNT(*) >= 2;
+
+
+
+
+SELECT b.bid, COUNT(r.sid) AS reservations
+
+FROM Boats b
+
+LEFT JOIN Reserves r
+ON b.bid = r.bid
+WHERE b.color = 'red'
+
+GROUP BY b.bid;
+
+
+
+SELECT rating, AVG(age)
+
+FROM Sailors
+
+GROUP BY rating
+
+HAVING COUNT(*) >= 2;
+
+
+SELECT rating, AVG(age)
+FROM Sailors
+WHERE age >= 18
+
+GROUP BY rating
+HAVING COUNT(*) >= 2;
+
+
+
+SELECT rating, AVG(age)
+FROM Sailors
+WHERE age >= 18
+GROUP BY rating
+
+HAVING COUNT(*) >= 2;
+
+SELECT rating, AVG(age)
+FROM Sailors
+WHERE age >= 18
+GROUP BY rating
+
+HAVING COUNT(*) >= 2;
+
+
+SELECT rating
+FROM Sailors
+
+GROUP BY rating
+HAVING AVG(age) =
+(
+    SELECT MIN(avg_age)
+    FROM
+
+    (
+        SELECT AVG(age) AS avg_age
+
+        FROM Sailors
+        GROUP BY rating
+    ) x
+);
+
+SELECT * FROM SAILORS WHERE SID = 22;
+SELECT * FROM BOATS WHERE BID = 101;
+SELECT * FROM RESERVES;
+```
+![OUTPUT](op1-2.png)
+![OUTPUT](op2-2.png)
+![OUTPUT](op3-2.png)
+![OUTPUT](op4-2.png)
+![OUTPUT](op5-2.png)
+![OUTPUT](op6-2.png)
+![OUTPUT](op7-2.png)
+![OUTPUT](op8-2.png)
+![OUTPUT](op9-2.png)
+![OUTPUT](op10-2.png)
+![OUTPUT](op11-2.png)
+![OUTPUT](op12-2.png)
+![OUTPUT](op13-2.png)
+![OUTPUT](op14-2.png)
+![OUTPUT](op15-2.png)
+![OUTPUT](op16-2.png)
+![OUTPUT](op17-2.png)
+![OUTPUT](op18-2.png)
+![OUTPUT](op19-2.png)
+![OUTPUT](op20-2.png)
+![OUTPUT](op21-2.png)
+![OUTPUT](op22-2.png)
+![OUTPUT](op23-2.png)
+![OUTPUT](op24-2.png)
+![OUTPUT](op25-2.png)
+![OUTPUT](op26-2.png)
+![OUTPUT](op27-2.png)
+![OUTPUT](op28-2.png)
+![OUTPUT](op29-2.png)
+![OUTPUT](op30-2.png)
+![OUTPUT](op31-2.png)
+![OUTPUT](op32-2.png)
+![OUTPUT](op33-2.png)
+![OUTPUT](op34-2.png)
+![OUTPUT](op35-2.png)
+![OUTPUT](op36-2.png)
+![OUTPUT](op37-2.png)
+![OUTPUT](op38-2.png)
+![OUTPUT](op39-2.png)
+![OUTPUT](op40-2.png)
+![OUTPUT](op41-2.png)
+![OUTPUT](op42-2.png)
+![OUTPUT](op43-2.png)
+![OUTPUT](op44-2.png)
+![OUTPUT](op45-2.png)
+![OUTPUT](op46-2.png)

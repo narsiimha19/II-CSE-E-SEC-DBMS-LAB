@@ -1,0 +1,453 @@
+#8. Develop programs using features parameters in a CURSOR, FOR UPDATE CURSOR,WHERE CURRENT of clause and CURSOR variables.
+#Program 1 – Cursor with Parameters (Banking System)
+```
+CREATE TABLE ACCOUNT (
+    ACCOUNT_NO NUMBER(10) PRIMARY KEY,
+    CUSTOMER_NAME VARCHAR2(30),
+    ACCOUNT_TYPE VARCHAR2(20),
+    BALANCE NUMBER(10,2)
+);
+
+INSERT INTO ACCOUNT VALUES (1001, 'Rahul', 'SAVINGS', 25000);
+INSERT INTO ACCOUNT VALUES (1002, 'Sneha', 'CURRENT', 45000);
+INSERT INTO ACCOUNT VALUES (1003, 'Arjun', 'SAVINGS', 30000);
+INSERT INTO ACCOUNT VALUES (1004, 'Priya', 'CURRENT', 55000);
+INSERT INTO ACCOUNT VALUES (1005, 'Kiran', 'SAVINGS', 40000);
+
+COMMIT;
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR C_ACCOUNT(P_TYPE VARCHAR2) IS
+        SELECT ACCOUNT_NO, CUSTOMER_NAME,
+               ACCOUNT_TYPE, BALANCE
+        FROM ACCOUNT
+        WHERE ACCOUNT_TYPE = P_TYPE;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('SAVINGS ACCOUNT DETAILS');
+
+    FOR REC IN C_ACCOUNT('SAVINGS') LOOP
+        DBMS_OUTPUT.PUT_LINE(
+            REC.ACCOUNT_NO || ' ' ||
+            REC.CUSTOMER_NAME || ' ' ||
+            REC.ACCOUNT_TYPE || ' ' ||
+            REC.BALANCE
+        );
+    END LOOP;
+END;
+/
+``
+#Program 2 – Cursor with Parameters (Hospital Management)   
+```CREATE TABLE PATIENT (
+    PATIENT_ID NUMBER(5) PRIMARY KEY,
+    PATIENT_NAME VARCHAR2(30),
+    DEPARTMENT VARCHAR2(30),
+    DOCTOR_NAME VARCHAR2(30)
+);
+
+INSERT INTO PATIENT VALUES (1, 'Rahul', 'Cardiology', 'Dr. Kumar');
+INSERT INTO PATIENT VALUES (2, 'Sneha', 'Neurology', 'Dr. Rani');
+INSERT INTO PATIENT VALUES (3, 'Arjun', 'Cardiology', 'Dr. Rao');
+INSERT INTO PATIENT VALUES (4, 'Priya', 'Orthopedics', 'Dr. Das');
+
+COMMIT;
+
+
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR C_EMP IS
+        SELECT EMP_ID, SALARY
+        FROM EMPLOYEE
+        FOR UPDATE OF SALARY;
+BEGIN
+    FOR REC IN C_EMP LOOP
+        UPDATE EMPLOYEE
+        SET SALARY = SALARY * 1.10
+        WHERE CURRENT OF C_EMP;
+    END LOOP;
+
+    COMMIT;
+
+    DBMS_OUTPUT.PUT_LINE
+        'Salary increased by 10% successfully.'
+    );
+END;
+/
+```
+#Program 3 – FOR UPDATE Cursor (Employee Payroll)
+```SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR C_EMP IS
+        SELECT EMP_ID, SALARY
+        FROM EMPLOYEE
+        FOR UPDATE OF SALARY;
+BEGIN
+    FOR REC IN C_EMP LOOP
+        UPDATE EMPLOYEE
+        SET SALARY = SALARY * 1.10
+        WHERE CURRENT OF C_EMP;
+    END LOOP;
+
+    COMMIT;
+
+    DBMS_OUTPUT.PUT_LINE('Salary Updated Successfully.');
+END;
+/
+```
+#Program 4 – FOR UPDATE Cursor (Library Management)
+```
+CREATE TABLE BOOK (
+    BOOK_ID NUMBER(5) PRIMARY KEY,
+    BOOK_TITLE VARCHAR2(50),
+    AUTHOR VARCHAR2(30),
+    AVAILABLE_COPIES NUMBER(5)
+);
+
+INSERT INTO BOOK VALUES (1, 'DBMS', 'Navathe', 10);
+INSERT INTO BOOK VALUES (2, 'Java', 'Herbert', 15);
+INSERT INTO BOOK VALUES (3, 'Python', 'Guido', 20);
+
+COMMIT;
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR C_BOOK IS
+        SELECT BOOK_ID, AVAILABLE_COPIES
+        FROM BOOK
+        FOR UPDATE OF AVAILABLE_COPIES;
+BEGIN
+    FOR REC IN C_BOOK LOOP
+        UPDATE BOOK
+        SET AVAILABLE_COPIES = AVAILABLE_COPIES + 5
+        WHERE CURRENT OF C_BOOK;
+    END LOOP;
+
+    COMMIT;
+
+    DBMS_OUTPUT.PUT_LINE('Book copies updated successfully.');
+END;
+/
+```
+#Program 5 – WHERE CURRENT OF (Inventory Management)
+```
+CREATE TABLE PRODUCT (
+    PRODUCT_ID NUMBER(5) PRIMARY KEY,
+    PRODUCT_NAME VARCHAR2(30),
+    PRICE NUMBER(10,2),
+    QUANTITY NUMBER(5)
+);
+
+INSERT INTO PRODUCT VALUES (1, 'Laptop', 50000, 10);
+INSERT INTO PRODUCT VALUES (2, 'Mouse', 500, 50);
+INSERT INTO PRODUCT VALUES (3, 'Keyboard', 1000, 25);
+
+COMMIT;
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR C_PRODUCT IS
+        SELECT PRODUCT_ID, PRICE
+        FROM PRODUCT
+        FOR UPDATE OF PRICE;
+BEGIN
+    FOR REC IN C_PRODUCT LOOP
+        UPDATE PRODUCT
+        SET PRICE = PRICE * 1.05
+        WHERE CURRENT OF C_PRODUCT;
+    END LOOP;
+
+    COMMIT;
+
+    DBMS_OUTPUT.PUT_LINE('Product prices increased by 5%.');
+END;
+/
+```
+#Program 6 – Cursor Variable (University Management)
+```
+SET SERVEROUTPUT ON;
+
+DECLARE
+    TYPE STUDENT_CURSOR IS REF CURSOR;
+    C_STUDENT STUDENT_CURSOR;
+    V_STUDENT STUDENT%ROWTYPE;
+BEGIN
+    OPEN C_STUDENT FOR
+        SELECT *
+        FROM STUDENT;
+
+    LOOP
+        FETCH C_STUDENT INTO V_STUDENT;
+        EXIT WHEN C_STUDENT%NOTFOUND;
+
+        DBMS_OUTPUT.PUT_LINE(
+            V_STUDENT.STUDENT_ID || ' ' ||
+            V_STUDENT.STUDENT_NAME || ' ' ||
+            V_STUDENT.COURSE || ' ' ||
+            V_STUDENT.MARKS
+        );
+    END LOOP;
+
+    CLOSE C_STUDENT;
+END;
+/
+```
+#Program 7 – Cursor Variable (Hospital Management)
+```
+CREATE TABLE DOCTOR (
+    DOCTOR_ID NUMBER(5) PRIMARY KEY,
+    DOCTOR_NAME VARCHAR2(30),
+    SPECIALIZATION VARCHAR2(30),
+    EXPERIENCE NUMBER(2)
+);
+
+INSERT INTO DOCTOR VALUES (1, 'Dr. Kumar', 'Cardiology', 12);
+INSERT INTO DOCTOR VALUES (2, 'Dr. Rani', 'Neurology', 8);
+INSERT INTO DOCTOR VALUES (3, 'Dr. Rao', 'Orthopedics', 15);
+
+COMMIT;
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    TYPE DOCTOR_CURSOR IS REF CURSOR;
+    C_DOCTOR DOCTOR_CURSOR;
+    V_DOCTOR DOCTOR%ROWTYPE;
+BEGIN
+    OPEN C_DOCTOR FOR
+        SELECT * FROM DOCTOR;
+
+    LOOP
+        FETCH C_DOCTOR INTO V_DOCTOR;
+        EXIT WHEN C_DOCTOR%NOTFOUND;
+
+        DBMS_OUTPUT.PUT_LINE(
+            V_DOCTOR.DOCTOR_ID || ' ' ||
+            V_DOCTOR.DOCTOR_NAME || ' ' ||
+            V_DOCTOR.SPECIALIZATION || ' ' ||
+            V_DOCTOR.EXPERIENCE
+        );
+    END LOOP;
+
+    CLOSE C_DOCTOR;
+END;
+/
+```
+#Program 8 – Cursor Variable (Online Shopping System)
+```
+CREATE TABLE ORDERS_DETAILS (
+    ORDER_ID NUMBER(5) PRIMARY KEY,
+    CUSTOMER_NAME VARCHAR2(30),
+    PRODUCT_NAME VARCHAR2(30),
+    QUANTITY NUMBER(5),
+    TOTAL_AMOUNT NUMBER(10,2)
+);
+
+INSERT INTO ORDERS_DETAILS
+VALUES (101, 'Rahul', 'Laptop', 1, 50000);
+
+INSERT INTO ORDERS_DETAILS
+VALUES (102, 'Sneha', 'Mouse', 2, 1000);
+
+INSERT INTO ORDERS_DETAILS
+VALUES (103, 'Arjun', 'Keyboard', 1, 1500);
+
+INSERT INTO ORDERS_DETAILS
+VALUES (104, 'Priya', 'Monitor', 2, 24000);
+
+INSERT INTO ORDERS_DETAILS
+VALUES (105, 'Kiran', 'Headphones', 1, 2500);
+
+COMMIT;
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    TYPE ORDER_CURSOR IS REF CURSOR;
+    C_ORDER ORDER_CURSOR;
+    V_ORDER ORDERS_DETAILS%ROWTYPE;
+BEGIN
+    OPEN C_ORDER FOR
+        SELECT *
+        FROM ORDERS_DETAILS;
+
+    LOOP
+        FETCH C_ORDER INTO V_ORDER;
+        EXIT WHEN C_ORDER%NOTFOUND;
+
+        DBMS_OUTPUT.PUT_LINE(
+            'Order ID: ' || V_ORDER.ORDER_ID ||
+            ', Customer: ' || V_ORDER.CUSTOMER_NAME ||
+            ', Product: ' || V_ORDER.PRODUCT_NAME ||
+            ', Quantity: ' || V_ORDER.QUANTITY ||
+            ', Total Amount: ' || V_ORDER.TOTAL_AMOUNT
+        );
+    END LOOP;
+
+    CLOSE C_ORDER;
+END;
+/
+```
+#Program 9 – Combined Cursor Features (Employee Management System)
+```
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR C_DISPLAY(P_DEPT VARCHAR2) IS
+        SELECT EMP_ID, EMP_NAME, DEPARTMENT, SALARY
+        FROM EMPLOYEE
+        WHERE DEPARTMENT = P_DEPT;
+
+    CURSOR C_UPDATE(P_DEPT VARCHAR2) IS
+        SELECT EMP_ID, SALARY
+        FROM EMPLOYEE
+        WHERE DEPARTMENT = P_DEPT
+        FOR UPDATE OF SALARY;
+
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('EMPLOYEES IN HR DEPARTMENT');
+
+    FOR REC IN C_DISPLAY('HR') LOOP
+        DBMS_OUTPUT.PUT_LINE(
+            REC.EMP_ID || ' ' ||
+            REC.EMP_NAME || ' ' ||
+            REC.DEPARTMENT || ' ' ||
+            REC.SALARY
+        );
+    END LOOP;
+
+    FOR REC IN C_UPDATE('HR') LOOP
+        UPDATE EMPLOYEE
+        SET SALARY = SALARY + 3000
+        WHERE CURRENT OF C_UPDATE;
+    END LOOP;
+
+    COMMIT;
+
+    DBMS_OUTPUT.PUT_LINE('SALARY UPDATED SUCCESSFULLY');
+
+    FOR REC IN C_DISPLAY('HR') LOOP
+        DBMS_OUTPUT.PUT_LINE(
+            'Updated: ' || REC.EMP_ID || ' ' ||
+            REC.EMP_NAME || ' ' ||
+            REC.SALARY
+        );
+    END LOOP;
+END;
+/
+```
+#Program 10 – Combined Cursor Features (College Management System)
+```
+CREATE TABLE COLLEGE_STUDENT (
+    STUDENT_ID NUMBER(5) PRIMARY KEY,
+    STUDENT_NAME VARCHAR2(30),
+    BRANCH VARCHAR2(20),
+    SEMESTER NUMBER(2),
+    CGPA NUMBER(3,2),
+    SCHOLARSHIP_STATUS VARCHAR2(20)
+);
+
+INSERT INTO COLLEGE_STUDENT
+VALUES (201, 'Arun', 'CSE', 4, 9.20, 'Not Eligible');
+
+INSERT INTO COLLEGE_STUDENT
+VALUES (202, 'Bhavya', 'ECE', 4, 8.50, 'Not Eligible');
+
+INSERT INTO COLLEGE_STUDENT
+VALUES (203, 'Charan', 'CSE', 4, 9.50, 'Not Eligible');
+
+INSERT INTO COLLEGE_STUDENT
+VALUES (204, 'Divya', 'CSE', 4, 8.70, 'Not Eligible');
+
+COMMIT;
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+    CURSOR C_BRANCH(P_BRANCH VARCHAR2) IS
+        SELECT STUDENT_ID, STUDENT_NAME, BRANCH,
+               SEMESTER, CGPA, SCHOLARSHIP_STATUS
+        FROM COLLEGE_STUDENT
+        WHERE BRANCH = P_BRANCH;
+
+    TYPE STUDENT_CURSOR IS REF CURSOR;
+    C_STUDENT STUDENT_CURSOR;
+
+    V_STUDENT COLLEGE_STUDENT%ROWTYPE;
+
+    CURSOR C_UPDATE IS
+        SELECT STUDENT_ID, CGPA
+        FROM COLLEGE_STUDENT
+        WHERE BRANCH = 'CSE'
+          AND CGPA >= 9.0
+        FOR UPDATE OF SCHOLARSHIP_STATUS;
+
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('CSE STUDENT DETAILS');
+
+    OPEN C_STUDENT FOR
+        SELECT *
+        FROM COLLEGE_STUDENT
+        WHERE BRANCH = 'CSE';
+
+    LOOP
+        FETCH C_STUDENT INTO V_STUDENT;
+        EXIT WHEN C_STUDENT%NOTFOUND;
+
+        DBMS_OUTPUT.PUT_LINE(
+            V_STUDENT.STUDENT_ID || ' ' ||
+            V_STUDENT.STUDENT_NAME || ' ' ||
+            V_STUDENT.BRANCH || ' ' ||
+            V_STUDENT.SEMESTER || ' ' ||
+            V_STUDENT.CGPA || ' ' ||
+            V_STUDENT.SCHOLARSHIP_STATUS
+        );
+    END LOOP;
+
+    CLOSE C_STUDENT;
+
+    FOR REC IN C_UPDATE LOOP
+        UPDATE COLLEGE_STUDENT
+        SET SCHOLARSHIP_STATUS = 'Eligible'
+        WHERE CURRENT OF C_UPDATE;
+    END LOOP;
+
+    COMMIT;
+
+    DBMS_OUTPUT.PUT_LINE('Scholarship status updated.');
+
+    FOR REC IN C_BRANCH('CSE') LOOP
+        DBMS_OUTPUT.PUT_LINE(
+            'Final: ' || REC.STUDENT_ID || ' ' ||
+            REC.STUDENT_NAME || ' CGPA=' ||
+            REC.CGPA || ' Status=' ||
+            REC.SCHOLARSHIP_STATUS
+        );
+    END LOOP;
+END;
+/
+```
+![OUTPUT](op1-8.png)
+![OUTPUT](op2-8.png)
+![OUTPUT](op3-8.png)
+![OUTPUT](op4-8.png)
+![OUTPUT](op5-8.png)
+![OUTPUT](op6-8.png)
+![OUTPUT](op7-8.png)
+![OUTPUT](op8-8.png)
+![OUTPUT](op9-8.png)
+![OUTPUT](op10-8.png)
+![OUTPUT](op11-8.png)
+![OUTPUT](op12-8.png)
+![OUTPUT](op13-8.png)
+![OUTPUT](op14-8.png)
+![OUTPUT](op15-8.png)
+![OUTPUT](op16-8.png)
+![OUTPUT](op17-8.png)
+![OUTPUT](op18-8.png)
+![OUTPUT](op19-8.png)
