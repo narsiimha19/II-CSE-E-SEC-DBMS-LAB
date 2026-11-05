@@ -1,0 +1,204 @@
+# EXPERIMENT-3B
+
+# Q1
+```
+CREATE VIEW EMP_VIEW AS
+SELECT *
+FROM EMPLOYEE;
+```
+![output a](output-q1)
+# Q2
+```
+CREATE VIEW EMP_BASIC AS
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, DEPARTMENT, SALARY
+FROM EMPLOYEE;
+```
+![output a](output-q2)
+
+# Q3
+```
+SELECT * FROM EMP_VIEW;
+```
+![output a](output-q3)
+
+# Q4
+```
+CREATE VIEW IT_EMPLOYEES AS
+SELECT * FROM EMPLOYEE
+WHERE DEPARTMENT = 'IT';
+```
+![output a](output-q4)
+
+# Q5
+```
+CREATE VIEW HIGH_SALARY AS
+SELECT * FROM EMPLOYEE
+WHERE SALARY > 60000;
+```
+![output a](output-q5)
+
+# Q6
+```
+CREATE VIEW HYDERABAD_EMP AS
+SELECT *
+FROM EMPLOYEE
+WHERE CITY = 'Hyderabad';
+```
+![output a](output-q6)
+
+# Q7
+```
+CREATE VIEW FEMALE_EMP AS
+SELECT *
+FROM EMPLOYEE
+WHERE GENDER = 'Female';
+```
+![output a](output-q7)
+
+# Q8
+```
+CREATE VIEW RECENT_EMPLOYEES AS
+SELECT *
+FROM EMPLOYEE
+WHERE HIRE_DATE >= TO_DATE('01-JAN-2020','DD-MON-YYYY');
+```
+![output a](output-q8)
+
+# Q9
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, SALARY
+FROM HIGH_SALARY;
+```
+![output a](output-q9)
+
+# Q10
+```
+CREATE OR REPLACE VIEW EMP_BASIC AS
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME,
+       DEPARTMENT, SALARY, CITY
+FROM EMPLOYEE;
+```
+![output a](output-q10)
+
+# Q11
+```
+CREATE VIEW EMP_SALARY_VIEW AS
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY
+FROM EMPLOYEE
+WITH READ ONLY;
+```
+![output a](output-q11)
+
+# Q12
+```
+CREATE VIEW SALES_EMP AS
+SELECT *
+FROM EMPLOYEE
+WHERE DEPARTMENT = 'Sales'
+WITH CHECK OPTION;
+```
+![output a](output-q12)
+
+# Q13
+```
+UPDATE EMP_BASIC
+SET SALARY = 75000
+WHERE EMPLOYEE_ID = 101;
+
+COMMIT;
+```
+![output a](output-q13)
+
+# Q14
+```
+DELETE FROM EMP_VIEW
+WHERE EMPLOYEE_ID = 107;
+
+COMMIT;
+```
+![output a](output-q14)
+
+# Q15
+```
+INSERT INTO EMP_BASIC
+VALUES (111, 'Ravi', 'Kumar', 'IT', 50000, 'Hyderabad');
+
+COMMIT;
+```
+![output a](output-q15)
+
+# Q16
+```
+DESC EMP_BASIC;
+```
+![output a](output-q16)
+
+# Q17
+```
+SELECT * FROM IT_EMPLOYEES;
+```
+![output a](output-q17)
+
+# Q18
+```
+SELECT * FROM HIGH_SALARY
+WHERE SALARY > 70000;
+```
+![output a](output-q18)
+
+# Q19
+```
+SELECT * FROM FEMALE_EMP;
+```
+![output a](output-q19)
+
+# Q20
+```
+SELECT FIRST_NAME, SALARY
+FROM HYDERABAD_EMP;
+```
+![output a](output-q20)
+
+# Q21
+DROP VIEW EMP_VIEW;
+![output a](output-q21)
+
+# Q22
+DROP VIEW HIGH_SALARY;
+![output a](output-q22)
+
+# Q23
+DROP VIEW EMP_BASIC;
+![output a](output-q23)
+
+# Q24
+```
+CREATE VIEW HR_EMPLOYEES AS
+SELECT * FROM EMPLOYEE
+WHERE DEPARTMENT = 'HR';
+```
+![output a](output-q24)
+
+# Q25
+```
+CREATE VIEW MARKETING_EMP AS
+SELECT EMPLOYEE_ID, FIRST_NAME, DEPARTMENT, SALARY
+FROM EMPLOYEE
+WHERE DEPARTMENT = 'Marketing';
+```
+![output a](output-q25)
+
+# Q26
+```
+CREATE VIEW TOP_EARNERS AS
+SELECT * FROM EMPLOYEE
+WHERE SALARY > 70000;
+```
+![output a](output-q26)
+
+# Q27
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, CITY
+FROM EMPLOYEE;
+```
+![output a](output-q27)
