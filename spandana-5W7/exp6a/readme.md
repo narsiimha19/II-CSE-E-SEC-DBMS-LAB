@@ -1,0 +1,103 @@
+## PL/SQL CODE
+```
+SET SERVEROUTPUT ON;
+
+DECLARE
+   
+    v_student_name  VARCHAR2(50);
+    v_marks         NUMBER;
+    v_grade         VARCHAR2(10);
+    v_test1         NUMBER;
+    v_test2         NUMBER;
+    v_nullif_result NUMBER;
+    v_coalesce_result VARCHAR2(50);
+
+BEGIN
+    
+    v_student_name := 'Ravi';
+    v_marks := 85;
+    v_test1 := 100;
+    v_test2 := 100;
+
+   
+    IF v_marks >= 40 THEN
+        IF v_marks >= 60 THEN
+            DBMS_OUTPUT.PUT_LINE(
+                v_student_name || ' has passed with First Class.'
+            );
+        ELSE
+            DBMS_OUTPUT.PUT_LINE(
+                v_student_name || ' has passed with Second Class.'
+            );
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(
+        );
+    CASE
+        WHEN v_marks >= 90 THEN
+            WHEN v_marks >= 50 THEN 'D'
+            WHEN v_marks >= 40 THEN 'E'
+    v_nullif_result := NULLIF(v_test1, v_test2);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(
+        );
+   
+
+    DBMS_OUTPUT.PUT_LINE(
+
+    WHEN OTHERS THEN
+            'Error: ' || SQLERRM
+        );
+END;
+/
+```        DBMS_OUTPUT.PUT_LINE(
+EXCEPTION
+    );
+        'COALESCE Result: ' || v_coalesce_result
+    -- Display COALESCE result
+    v_coalesce_result :=
+        COALESCE(NULL, NULL, v_student_name, 'No Name');
+    END IF;
+
+            'NULLIF Result: ' || v_nullif_result
+
+            'NULLIF Result: NULL'
+        );
+    IF v_nullif_result IS NULL THEN
+        DBMS_OUTPUT.PUT_LINE(
+        END;
+
+   
+
+    
+    DBMS_OUTPUT.PUT_LINE(
+        'Grade stored in variable: ' || v_grade
+    );
+            ELSE 'F'
+
+            WHEN v_marks >= 60 THEN 'C'
+    v_grade :=
+            WHEN v_marks >= 80 THEN 'A'
+            WHEN v_marks >= 70 THEN 'B'
+        CASE
+            WHEN v_marks >= 90 THEN 'A+'
+            DBMS_OUTPUT.PUT_LINE('Grade: F');
+
+    END CASE;
+            DBMS_OUTPUT.PUT_LINE('Grade: E');
+        ELSE
+        WHEN v_marks >= 80 THEN
+        WHEN v_marks >= 40 THEN
+            DBMS_OUTPUT.PUT_LINE('Grade: D');
+        WHEN v_marks >= 60 THEN
+        WHEN v_marks >= 50 THEN
+            DBMS_OUTPUT.PUT_LINE('Grade: C');
+            DBMS_OUTPUT.PUT_LINE('Grade: B');
+        WHEN v_marks >= 70 THEN
+            DBMS_OUTPUT.PUT_LINE('Grade: A');
+            DBMS_OUTPUT.PUT_LINE('Grade: A+');
+ 
+ END IF;
+ v_student_name || ' has failed.'
+```
+
+![output](6a.png)
